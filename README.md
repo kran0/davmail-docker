@@ -12,5 +12,7 @@ $ docker build -t davmail:4.8.5\
 ```bash
 $ docker run -it --rm\
    -v $PWD/conf/davmail.properties.example:/davmail/davmail.properties:ro\
+   -p 1025:1025\
+   -p 1110:1110\
    davmail:4.8.5
 ```
