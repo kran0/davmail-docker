@@ -8,5 +8,5 @@ $ docker run -it --rm\
    kran0/davmail-docker:latest
 ```
 
-Example run command publishes 1025 (for SMTP) and 1110 (for POP).
-Add more `-p HOSTS_PORT:CONTAINER_PORT` to publish them.
+Example run command publishes 1025 (SMTP) and 1110 (POP).
+Add more `-p HOSTS_PORT:CONTAINER_PORT` to more.
