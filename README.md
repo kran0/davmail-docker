@@ -1,12 +1,3 @@
-# How to build
-
-You need docker-ce >= 17!
-```bash
-$ docker build -t davmail:4.8.5\
-   --build-arg DAVMAIL_VER='4.8.5'\
-   --build-arg DAVMAIL_REV='2589' .
-```
-
 # How to run
 
 ```bash
@@ -14,5 +5,8 @@ $ docker run -it --rm\
    -v $PWD/conf/davmail.properties.example:/davmail/davmail.properties:ro\
    -p 1025:1025\
    -p 1110:1110\
-   davmail:4.8.5
+   kran0/davmail-docker:latest
 ```
+
+Example run command publishes 1025 (for SMTP) and 1110 (for POP).
+Add more `-p HOSTS_PORT:CONTAINER_PORT` to publish them.
