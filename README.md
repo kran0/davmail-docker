@@ -1,3 +1,5 @@
+[DavMail](http://davmail.sourceforge.net/) POP/IMAP/SMTP/Caldav/Carddav/LDAP Exchange Gateway
+
 # How to run
 
 ```bash
@@ -9,4 +11,6 @@ $ docker run -it --rm\
 ```
 
 Example run command publishes 1025 (SMTP) and 1110 (POP).
-Add more `-p HOSTS_PORT:CONTAINER_PORT` to more.
+Add more `-p HOSTS_PORT:CONTAINER_PORT` to get more: 1143 (imap); 1389 (ldap); 1080 (caldav).
+
+The davmail.properties example and references in the [official documentation](http://davmail.sourceforge.net/serversetup.html)
