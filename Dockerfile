@@ -8,8 +8,7 @@ RUN apk add --update --no-cache openjdk8 apache-ant ca-certificates
 
 # Get released VERSION.
 
-ENV DAVMAIL_VER 4.8.6
-ENV DAVMAIL_REV 2600
+ARG DAVMAIL_VER=4.8.6 DAVMAIL_REV=2600
 RUN apk add --update --no-cache curl\
  && curl -sL https://sourceforge.net/projects/davmail/files/davmail/${DAVMAIL_VER}/davmail-src-${DAVMAIL_VER}-${DAVMAIL_REV}.tgz | tar xzv\
  && find ./davmail-* -type d -maxdepth 0 -exec ln -vs "{}" "/davmail-code" \;
