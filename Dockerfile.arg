@@ -27,5 +27,11 @@ COPY --from=builder\
  /davmail/
 COPY --from=builder /davmail-code/dist/lib /davmail/lib
 
+EXPOSE 1110
+EXPOSE 1025
+EXPOSE 1143
+EXPOSE 1080
+EXPOSE 1389
+
 ENTRYPOINT [ "/davmail/davmail.sh" ]
 CMD [ "/davmail/davmail.properties" ]
