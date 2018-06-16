@@ -4,7 +4,7 @@ RUN apk add --update --no-cache openjdk8 apache-ant ca-certificates
 
 # Get svn TRUNK
 RUN apk add --update --no-cache subversion\
-RUN svn co https://svn.code.sf.net/p/davmail/code/trunk /davmail-code
+ && svn co https://svn.code.sf.net/p/davmail/code/trunk /davmail-code
 
 # Build
 RUN cd /davmail-code\
