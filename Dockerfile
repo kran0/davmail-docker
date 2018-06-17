@@ -7,7 +7,6 @@ RUN apk add --update --no-cache openjdk8 apache-ant ca-certificates
 #  && svn co https://svn.code.sf.net/p/davmail/code/trunk /davmail-code
 
 # Get released VERSION.
-
 ARG DAVMAIL_VER=4.8.6
 ARG DAVMAIL_REV=2600
 RUN apk add --update --no-cache curl\
