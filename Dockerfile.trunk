@@ -1,0 +1,33 @@
+
+# This file is made of the main Dockerfile.
+# Please make all the changes there first!
+
+FROM alpine:edge AS builder
+
+RUN apk add --update --no-cache openjdk8 apache-ant ca-certificates
+
+# Get svn TRUNK
+RUN apk add --update --no-cache subversion\
+ && svn co https://svn.code.sf.net/p/davmail/code/trunk /davmail-code
+
+# Build
+RUN cd /davmail-code\
+ && ant\
+ && chmod +x /davmail-code/dist/davmail.sh
+
+FROM openjdk:8-jre-alpine
+
+COPY --from=builder\
+ /davmail-code/dist/davmail.jar\
+ /davmail-code/dist/davmail.sh\
+ /davmail/
+COPY --from=builder /davmail-code/dist/lib /davmail/lib
+
+EXPOSE 1110
+EXPOSE 1025
+EXPOSE 1143
+EXPOSE 1080
+EXPOSE 1389
+
+ENTRYPOINT [ "/davmail/davmail.sh" ]
+CMD [ "/davmail/davmail.properties" ]
