@@ -1,8 +1,4 @@
-
-# This file is made of the main Dockerfile.
-# Please make all the changes there first!
-
-FROM alpine:edge AS builder
+FROM alpine:3.6 AS builder
 
 RUN apk add --update --no-cache openjdk8 apache-ant ca-certificates
 
