@@ -28,7 +28,7 @@ The davmail.properties example and references are in the [official documentation
 
 # Docker tags
 
-[https://hub.docker.com/r/kran0/davmail-docker/tags/](Automated builds).
+[Automated builds](https://hub.docker.com/r/kran0/davmail-docker/tags/).
 
 - kran0/davmail-docker:latest contains the latest stable revision marked as a release by the author;
 - kran0/davmail-docker:trunk contains latest revision published by the author in SVN repo. It builds automaticly and may be unstable;
