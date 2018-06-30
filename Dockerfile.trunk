@@ -1,4 +1,4 @@
-FROM alpine:3.6 AS builder
+FROM alpine:3.8 AS builder
 
 RUN apk add --update --no-cache openjdk8 apache-ant ca-certificates
 
