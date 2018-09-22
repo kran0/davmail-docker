@@ -9,14 +9,14 @@ The information, code and support: http://davmail.sourceforge.net/ .
 
 ```bash
 $ docker run -it --rm\
-   -v $PWD/conf/davmail.properties.example:/davmail/davmail.properties:ro\
+   -v $PWD/conf/davmail.properties.example:/davmail/davmail.properties\
    -p 1025:1025\
    -p 1110:1110\
    kran0/davmail-docker:latest
 ```
 
 Example run command publishes 1025 (SMTP) and 1110 (POP).
-Add more `-p HOSTS_PORT:CONTAINER_PORT` to get more:
+Add more `-p HOST_PORT:CONTAINER_PORT` to get more:
 
 - CalDav: 1080;
 - IMAP:   1143;
@@ -24,12 +24,14 @@ Add more `-p HOSTS_PORT:CONTAINER_PORT` to get more:
 - POP:    1110;
 - SMTP:   1025.
 
-The davmail.properties example and references are in the [official documentation](http://davmail.sourceforge.net/serversetup.html).
+The davmail.properties [example and references](http://davmail.sourceforge.net/serversetup.html).
 
 # Docker tags
 
 [Automated builds](https://hub.docker.com/r/kran0/davmail-docker/tags/).
 
-- kran0/davmail-docker:latest contains the latest stable revision marked as a release by the author;
-- kran0/davmail-docker:trunk contains latest revision published by the author in SVN repo. It builds automaticly and may be unstable;
-- kran0/davmail-docker:4.8.5 and such contain previously released stable releases.
+| Repository:Tag | Build description  |
+|:-:|---|
+| kran0/davmail-docker:latest | latest stable release                                                                          |
+| kran0/davmail-docker:trunk  | latest revision published by the author in SVN repo. It builds automaticly and may be unstable |
+| kran0/davmail-docker:4.8.5  | previously released stable releases                                                            |
