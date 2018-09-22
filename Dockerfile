@@ -1,16 +1,21 @@
-FROM alpine:3.7 AS builder
+FROM alpine:3.8 AS builder
 
-RUN apk add --update --no-cache openjdk8 apache-ant ca-certificates
+RUN apk add --update --no-cache ca-certificates curl\
+
+# Download OpenJFX (JavaFX) apk
+ && curl -sLo /etc/apk/keys/sgerrand.rsa.pub https://alpine-pkgs.sgerrand.com/sgerrand.rsa.pub\
+   --next -Lo /tmp/java-openjfx.apk https://github.com/sgerrand/alpine-pkg-java-openjfx/releases/download/8.151.12-r0/java-openjfx-8.151.12-r0.apk\
+
+# Install tools
+ && apk add --update --no-cache openjdk8 apache-ant subversion /tmp/java-openjfx.apk
 
 # Get svn TRUNK
-# RUN apk add --update --no-cache subversion\
-#  && svn co https://svn.code.sf.net/p/davmail/code/trunk /davmail-code
+#RUN svn co https://svn.code.sf.net/p/davmail/code/trunk /davmail-code
 
 # Get released VERSION.
 ARG DAVMAIL_VER=4.8.6
 ARG DAVMAIL_REV=2600
-RUN apk add --update --no-cache curl\
- && curl -sL https://sourceforge.net/projects/davmail/files/davmail/${DAVMAIL_VER}/davmail-src-${DAVMAIL_VER}-${DAVMAIL_REV}.tgz | tar xzv\
+RUN curl -sL https://sourceforge.net/projects/davmail/files/davmail/${DAVMAIL_VER}/davmail-src-${DAVMAIL_VER}-${DAVMAIL_REV}.tgz | tar xzv\
  && find ./davmail-* -type d -maxdepth 0 -exec ln -vs "{}" "/davmail-code" \;
 
 # Build
