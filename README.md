@@ -18,11 +18,11 @@ $ docker run -it --rm\
 Example run command publishes 1025 (SMTP) and 1110 (POP).
 Add more `-p HOST_PORT:CONTAINER_PORT` to get more:
 
-- CalDav: 1080;
-- IMAP:   1143;
-- LDAP:   1389;
-- POP:    1110;
-- SMTP:   1025.
+| CalDav | 1080 |
+| IMAP   | 1143 |
+| LDAP   | 1389 |
+| POP    | 1110 |
+| SMTP   | 1025 |
 
 The davmail.properties [example and references](http://davmail.sourceforge.net/serversetup.html).
 
