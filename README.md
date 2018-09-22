@@ -33,5 +33,6 @@ The davmail.properties [example and references](http://davmail.sourceforge.net/s
 | Repository:Tag | Build description  |
 |:-:|---|
 | kran0/davmail-docker:latest | latest stable release                                                                          |
-| kran0/davmail-docker:trunk  | latest revision published by the author in SVN repo. It builds automaticly and may be unstable |
-| kran0/davmail-docker:4.8.5  | previously released stable releases                                                            |
+| kran0/davmail-docker:trunk  | latest revision in SVN repo. *May be unstable!*                                                |
+| kran0/davmail-docker:4.8.5
+  kran0/davmail-docker:4.8.6  | previously released stable releases                                                            |
