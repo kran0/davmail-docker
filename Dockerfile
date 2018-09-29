@@ -1,8 +1,5 @@
 FROM alpine:3.8 AS builder
 
-ARG CACHE_TAG=notset
-RUN echo "DEBUG: ${CACHE_TAG}" # debug
-
 RUN apk add --update --no-cache ca-certificates curl\
 
 # Download OpenJFX (JavaFX) apk
