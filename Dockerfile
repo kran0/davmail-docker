@@ -1,7 +1,7 @@
 FROM alpine:3.8 AS builder
 
-ARG CACHE_TAG
-RUN echo "DEBUG: $CACHE_TAG" # debug
+ARG CACHE_TAG=notset
+RUN echo "DEBUG: ${CACHE_TAG}" # debug
 
 RUN apk add --update --no-cache ca-certificates curl\
 
