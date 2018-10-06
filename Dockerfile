@@ -24,14 +24,14 @@ RUN cd /davmail-code\
  && chmod +x /davmail-code/dist/davmail.sh\
 \
 # Prepare result
- && mkdir /davmail\
+ && mkdir -vp /target/davmail\
  && mv -v /davmail-code/dist/davmail.jar\
           /davmail-code/dist/davmail.sh\
           /davmail-code/dist/lib\
-      /davmail
+      /target/davmail/
 
 FROM openjdk:8-jre-alpine
-COPY --from=builder /davmail /
+COPY --from=builder /target /
 
 EXPOSE 1110 1025 1143 1080 1389
 ENTRYPOINT [ "/davmail/davmail.sh" ]
