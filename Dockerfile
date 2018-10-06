@@ -28,10 +28,9 @@ RUN cd /davmail-code\
  && mv -v /davmail-code/dist/davmail.jar\
           /davmail-code/dist/davmail.sh\
           /davmail-code/dist/lib\
-       /davmail
+      /davmail
 
 FROM openjdk:8-jre-alpine
-
 COPY --from=builder /davmail /
 
 EXPOSE 1110 1025 1143 1080 1389
