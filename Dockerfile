@@ -21,13 +21,13 @@ RUN curl -sL https://sourceforge.net/projects/davmail/files/davmail/${DAVMAIL_VE
 # Build
 RUN cd /davmail-code\
  && ant\
- && chmod +x /davmail-code/dist/davmail.sh
+ && chmod +x /davmail-code/dist/davmail.sh\
 \
 # Prepare result
  && mkdir /davmail\
- mv -v /davmail-code/dist/davmail.jar\
-       /davmail-code/dist/davmail.sh\
-       /davmail-code/dist/lib\
+ && mv -v /davmail-code/dist/davmail.jar\
+          /davmail-code/dist/davmail.sh\
+          /davmail-code/dist/lib\
        /davmail
 
 FROM openjdk:8-jre-alpine
