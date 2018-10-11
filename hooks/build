@@ -1,0 +1,8 @@
+#!/bin/sh
+
+echo "------ HOOK START - BUILD -------"
+printenv
+
+docker build --build-arg TEST=test -t $IMAGE_NAME .
+
+echo "------ HOOK END - BUILD -------"
