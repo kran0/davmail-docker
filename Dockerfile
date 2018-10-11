@@ -9,17 +9,16 @@ RUN apk add --update --no-cache ca-certificates curl\
 # Install tools
  && apk add --update --no-cache openjdk8 apache-ant subversion /tmp/java-openjfx.apk
 
-# Get svn TRUNK
-#RUN svn co https://svn.code.sf.net/p/davmail/code/trunk /davmail-code
 
-# Get released VERSION.
-ARG DAVMAIL_VER=4.9.0
-ARG DAVMAIL_REV=2652
-RUN curl -sL https://sourceforge.net/projects/davmail/files/davmail/${DAVMAIL_VER}/davmail-src-${DAVMAIL_VER}-${DAVMAIL_REV}.tgz | tar xzv\
- && find ./davmail-* -type d -maxdepth 0 -exec ln -vs "{}" "/davmail-code" \;
+#4.9.0 rev 2652
+ENV DAVMAIL_REV=2652
 
+# Get svn TRUNK or released REVISION
+#RUN svn co https://svn.code.sf.net/p/davmail/code/trunk /davmail-code\
+RUN svn co -r ${DAVMAIL_REV} https://svn.code.sf.net/p/davmail/code/trunk /davmail-code\
+\
 # Build
-RUN cd /davmail-code\
+ && cd /davmail-code\
  && ant\
  && chmod +x /davmail-code/dist/davmail.sh\
 \
