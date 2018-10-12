@@ -1,9 +1,9 @@
 #!/bin/sh
 
 echo "------ HOOK START - BUILD -------"
-printenv
+#printenv
 
-set -x
+#set -x
 
 DAVMAIL_REV="2652"
 if [ "$DOCKER_TAG" = "trunk" ]
@@ -11,6 +11,6 @@ if [ "$DOCKER_TAG" = "trunk" ]
   DAVMAIL_REV="HEAD"
  fi
 
-docker build --build-arg DAVMAIL_REV_test=$DAVMAIL_REV -t $IMAGE_NAME .
+docker build --build-arg DAVMAIL_REV=$DAVMAIL_REV -t $IMAGE_NAME .
 
 echo "------ HOOK END - BUILD -------"
