@@ -5,7 +5,7 @@ echo "------ HOOK START - BUILD -------"
 #set -x
 
 BUILD_ARGS=
-[ "$DOCKER_TAG" = "trunk" ] && BUILD_ARGS='--build-arg DAVMAIL_REV="HEAD"'
+[ "$DOCKER_TAG" = "trunk" ] && BUILD_ARGS='--build-arg DAVMAIL_REV=HEAD'
 
 docker build $BUILD_ARGS -t $IMAGE_NAME .
 
