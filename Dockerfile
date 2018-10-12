@@ -12,7 +12,7 @@ RUN apk add --update --no-cache ca-certificates curl\
 
 #4.9.0 rev 2652
 ENV DAVMAIL_REV=2652
-ENV DAVMAIL_REV_test
+ARG DAVMAIL_REV_test=2652
 
 RUN echo DEBUG ${DAVMAIL_REV_test} -
 
