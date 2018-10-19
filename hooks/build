@@ -2,7 +2,7 @@
 
 echo "------ HOOK START - BUILD -------"
 #printenv
-#set -x
+set -x
 
 BUILD_ARGS=
 [ "$DOCKER_TAG" = "trunk" ] && BUILD_ARGS='--build-arg DAVMAIL_REV=HEAD'
