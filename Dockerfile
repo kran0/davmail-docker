@@ -36,6 +36,6 @@ FROM openjdk:8-jre-alpine
 COPY --from=builder /target /
 
 EXPOSE 1110 1025 1143 1080 1389
-java -Xmx512M -Dsun.net.inetaddr.ttl=60 -cp /davmail/davmail.jar:lib/* davmail.DavGateway
+ENTRYPOINT [ "java", "-Xmx512M", "-Dsun.net.inetaddr.ttl=60", "-cp /davmail/davmail.jar:lib/*", "davmail.DavGateway" ]
 #ENTRYPOINT [ "/davmail/davmail.sh" ]
 CMD [ "/davmail/davmail.properties" ]
