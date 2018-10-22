@@ -21,14 +21,13 @@ RUN svn co -r ${DAVMAIL_REV} https://svn.code.sf.net/p/davmail/code/trunk /davma
 \
 # Build
  && cd /davmail-code\
- && ant\
- && chmod +x /davmail-code/dist/davmail.sh
+ && ant
+# && chmod +x /davmail-code/dist/davmail.sh
 
 
 # Prepare result
 RUN mkdir -vp /target/davmail\
  && mv -v /davmail-code/dist/davmail.jar\
-          /davmail-code/dist/davmail.sh\
           /davmail-code/dist/lib\
       /target/davmail/
 
@@ -37,5 +36,6 @@ FROM openjdk:8-jre-alpine
 COPY --from=builder /target /
 
 EXPOSE 1110 1025 1143 1080 1389
-ENTRYPOINT [ "/davmail/davmail.sh" ]
+java -Xmx512M -Dsun.net.inetaddr.ttl=60 -cp /davmail/davmail.jar:lib/* davmail.DavGateway
+#ENTRYPOINT [ "/davmail/davmail.sh" ]
 CMD [ "/davmail/davmail.properties" ]
