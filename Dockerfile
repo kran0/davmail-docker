@@ -4,7 +4,8 @@ FROM alpine:3.8 AS builder
 #4.8.5 rev 2589
 #4.8.6 rev 2600
 #4.9.0 rev 2652
-ARG DAVMAIL_REV=2652
+#5.0.0 rev 2801
+ARG DAVMAIL_REV=2801
 
 # Install Curl
 RUN apk add --update --no-cache ca-certificates curl
