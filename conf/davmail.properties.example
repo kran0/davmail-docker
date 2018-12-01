@@ -10,7 +10,7 @@
 # Server or workstation mode
 davmail.server=true
 # connection mode auto, EWS or WebDav
-davmail.enableEws=auto
+davmail.mode=EWS
 # base Exchange OWA or EWS url
 davmail.url=https://outlook.office365.com/EWS/Exchange.asmx
 
@@ -138,3 +138,4 @@ davmail.showStartupBanner=true
 
 # enable transparent client Kerberos authentication
 davmail.enableKerberos=false
+
