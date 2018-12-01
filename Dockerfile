@@ -7,15 +7,8 @@ FROM alpine:3.8 AS builder
 #5.0.0 rev 2801
 ARG DAVMAIL_REV=2801
 
-# Install Curl
-RUN apk add --update --no-cache ca-certificates curl
-
-# Download OpenJFX (JavaFX) apk
-#RUN curl -sLo /etc/apk/keys/sgerrand.rsa.pub https://alpine-pkgs.sgerrand.com/sgerrand.rsa.pub\
-#   --next -Lo /tmp/java-openjfx.apk https://github.com/sgerrand/alpine-pkg-java-openjfx/releases/download/8.151.12-r0/java-openjfx-8.151.12-r0.apk
-
 # Install tools
-RUN apk add --update --no-cache openjdk8 apache-ant subversion #/tmp/java-openjfx.apk
+RUN apk add --update --no-cache openjdk8 apache-ant subversion
 
 # Get svn TRUNK or released REVISION based on build-arg: DAVMAIL_REV
 RUN svn co -r ${DAVMAIL_REV} https://svn.code.sf.net/p/davmail/code/trunk /davmail-code
