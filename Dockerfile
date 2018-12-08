@@ -18,11 +18,11 @@ RUN cd /davmail-code && ant
 
 # Unused depencies, we dont need no junit tests, graphics support and winrun
 RUN rm -fv\
- /davmail-code/dist/lib/ant-deb*.jar
+ /davmail-code/dist/lib/ant-deb*.jar\
  /davmail-code/dist/lib/junit-*\
  /davmail-code/dist/lib/libgrowl*\
- /davmail-code/dist/lib/nsisant-*.jar
- /davmail-code/dist/lib/servlet-api-*.jar
+ /davmail-code/dist/lib/nsisant-*.jar\
+ /davmail-code/dist/lib/servlet-api-*.jar\
  /davmail-code/dist/lib/swt-*\
  /davmail-code/dist/lib/winrun4j-*\
  || true # if something is missing
