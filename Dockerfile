@@ -22,6 +22,12 @@ RUN mv -v /davmail-code/dist/davmail.jar\
           /davmail-code/dist/lib\
       /target/davmail/
 
+RUN rm -v /target/davmail/lib/junit-3.8.1.jar\
+          /target/davmail/lib/libgrowl-0.2.jar\
+          /target/davmail/lib/libgrowl.jnilib\
+          /target/davmail/lib/swt-4.6.3-gtk-linux-x86_64.jar\
+          /target/davmail/lib/winrun4j-0.4.5.jar
+
 ## Build completed, the result is in in the builder:/target directory ##
 
 FROM openjdk:8-jre-alpine
