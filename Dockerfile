@@ -17,7 +17,7 @@ RUN svn co -r ${DAVMAIL_REV} https://svn.code.sf.net/p/davmail/code/trunk /davma
 RUN cd /davmail-code && ant
 
 # Unused depencies, we dont need no junit tests, graphics support and winrun
-RUN rm -v
+RUN rm -v\
  /davmail-code/dist/lib/junit-*\
  /davmail-code/dist/lib/libgrowl*\
  /davmail-code/dist/lib/swt-*\
