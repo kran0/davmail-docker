@@ -16,17 +16,17 @@ RUN svn co -r ${DAVMAIL_REV} https://svn.code.sf.net/p/davmail/code/trunk /davma
 # Build
 RUN cd /davmail-code && ant
 
+# Unused depencies, we dont need no junit tests, graphics support and winrun
+RUN rm -v /davmail-code/dist/lib/junit-*\
+          /davmail-code/dist/lib/libgrowl*\
+          /davmail-code/dist/lib/swt-*\
+          /davmail-code/dist/davmail/lib/winrun4j-*
+
 # Prepare result
 RUN mkdir -vp /target/davmail
 RUN mv -v /davmail-code/dist/davmail.jar\
           /davmail-code/dist/lib\
       /target/davmail/
-
-RUN rm -v /target/davmail/lib/junit-3.8.1.jar\
-          /target/davmail/lib/libgrowl-0.2.jar\
-          /target/davmail/lib/libgrowl.jnilib\
-          /target/davmail/lib/swt-4.6.3-gtk-linux-x86_64.jar\
-          /target/davmail/lib/winrun4j-0.4.5.jar
 
 ## Build completed, the result is in in the builder:/target directory ##
 
