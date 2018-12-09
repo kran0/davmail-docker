@@ -40,8 +40,7 @@ FROM kran0/tiny:openjdk8-jre
 COPY --from=builder /target /
 
 EXPOSE 1110 1025 1143 1080 1389
-ENTRYPOINT [ "/usr/lib/jvm/java-1.8-openjdk/bin/java",\
-             "-Xmx512M", "-Dsun.net.inetaddr.ttl=60",\
+ENTRYPOINT [ "java", "-Xmx512M", "-Dsun.net.inetaddr.ttl=60",\
              "-cp", "/davmail/davmail.jar:/davmail/lib/*",\
              "davmail.DavGateway", "-notray" ]
 CMD [ "/davmail/davmail.properties" ]
