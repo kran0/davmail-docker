@@ -5,7 +5,8 @@ FROM alpine:3.8 AS builder
 #4.8.6 rev 2600
 #4.9.0 rev 2652
 #5.0.0 rev 2801
-ARG DAVMAIL_REV=2801
+#5.1.0 rev 2891
+ARG DAVMAIL_REV=2891
 
 # Install tools
 RUN apk add --update --no-cache openjdk8 apache-ant subversion
