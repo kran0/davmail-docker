@@ -15,18 +15,18 @@ RUN apk add --update --no-cache openjdk8 apache-ant subversion
 RUN svn co -r ${DAVMAIL_REV} https://svn.code.sf.net/p/davmail/code/trunk /davmail-code
 
 # Build
-RUN cd /davmail-code && ant jar
+RUN cd /davmail-code && ant #jar
 
 # Unused depencies, we dont need no junit tests, graphics support and winrun
-#RUN rm -fv\
-# /davmail-code/dist/lib/ant-deb*.jar\
-# /davmail-code/dist/lib/junit-*\
-# /davmail-code/dist/lib/libgrowl*\
-# /davmail-code/dist/lib/nsisant-*.jar\
-# /davmail-code/dist/lib/servlet-api-*.jar\
-# /davmail-code/dist/lib/swt-*\
-# /davmail-code/dist/lib/winrun4j-*\
-# || true # if something is missing
+RUN rm -fv\
+ /davmail-code/dist/lib/ant-deb*.jar\
+ /davmail-code/dist/lib/junit-*\
+ /davmail-code/dist/lib/libgrowl*\
+ /davmail-code/dist/lib/nsisant-*.jar\
+ /davmail-code/dist/lib/servlet-api-*.jar\
+ /davmail-code/dist/lib/swt-*\
+ /davmail-code/dist/lib/winrun4j-*\
+ || true # if something is missing
 
 # Prepare result
 RUN mkdir -vp /target/davmail
