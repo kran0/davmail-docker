@@ -36,8 +36,8 @@ RUN mv -v /davmail-code/dist/davmail.jar\
 
 ## Build completed, the result is in in the builder:/target directory ##
 
-FROM openjdk:8-jre-alpine
-#FROM kran0/tiny:openjdk8-jre
+#FROM openjdk:8-jre-alpine
+FROM kran0/tiny:openjdk8-jre
 COPY --from=builder /target /
 
 EXPOSE 1110 1025 1143 1080 1389
