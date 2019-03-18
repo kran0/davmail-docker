@@ -1,4 +1,4 @@
-FROM alpine:3.8 AS builder
+FROM alpine:3.9 AS builder
 
 #trunk rev HEAD (may be unstable)
 #4.8.5 rev 2589
