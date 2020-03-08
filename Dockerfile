@@ -12,30 +12,29 @@ FROM alpine:3.10 AS builder
 ARG DAVMAIL_REV=3135
 
 # Install tools
-RUN apk add --update --no-cache openjdk8 apache-ant subversion
+RUN apk add --update --no-cache openjdk8 maven subversion
 
 # Get svn TRUNK or released REVISION based on build-arg: DAVMAIL_REV
 RUN svn co -r ${DAVMAIL_REV} https://svn.code.sf.net/p/davmail/code/trunk /davmail-code
 
 # Build
-RUN cd /davmail-code && ant #jar
-
-# Unused depencies, we dont need no junit tests, graphics support and winrun
-RUN rm -fv\
- /davmail-code/dist/lib/ant-deb*.jar\
- /davmail-code/dist/lib/junit-*\
- /davmail-code/dist/lib/libgrowl*\
- /davmail-code/dist/lib/nsisant-*.jar\
- /davmail-code/dist/lib/servlet-api-*.jar\
- /davmail-code/dist/lib/swt-*\
- /davmail-code/dist/lib/winrun4j-*\
- || true # if something is missing
+RUN cd /davmail-code && mvn clean package #jar
 
 # Prepare result
-RUN mkdir -vp /target/davmail
-RUN mv -v /davmail-code/dist/davmail.jar\
-          /davmail-code/dist/lib\
-      /target/davmail/
+RUN mkdir -vp /target/davmail /target/davmail/lib
+WORKDIR /target/davmail
+
+# We run headless. No junit tests, graphics support and winrun deps.
+RUN mv -v $(find ${HOME}/.m2/repository/\
+               -name 'httpclient*.jar'\
+            -o -name 'httpcore*.jar'\
+            -o -name 'log4j*.jar'\
+            -o -name 'commons-httpclient*.jar'\
+            -o -name 'jackrabbit-webdav*.jar'\
+            -o -name 'commons-logging*.jar')\
+          ./lib/
+RUN mv -v /davmail-code/target/davmail-*.jar .
+RUN ln -s davmail-*.jar davmail.jar
 
 ## Build completed, the result is in in the builder:/target directory ##
 
