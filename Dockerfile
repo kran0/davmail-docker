@@ -17,37 +17,17 @@ RUN apk add --update --no-cache openjdk8 maven subversion
 # Get svn TRUNK or released REVISION based on build-arg: DAVMAIL_REV
 RUN svn co -r ${DAVMAIL_REV} https://svn.code.sf.net/p/davmail/code/trunk /davmail-code
 
-# Build
-RUN cd /davmail-code && mvn clean package #jar
+# Build + Prepare result
+RUN cd /davmail-code\
+ && mvn clean package
+ && mvn dependency:resolve -DoutputAbsoluteArtifactFilename=true -DoutputFile=/tmp/deps
 
-# Prepare result
 RUN mkdir -vp /target/davmail /target/davmail/lib
 WORKDIR /target/davmail
 
-#RUN mv -v $(find ${HOME}/.m2/repository/ /davmail-code/lib\
-#               -name 'httpclient*.jar'\
-#            -o -name 'httpcore*.jar'\
-#            -o -name 'log4j*.jar'\
-#            -o -name 'commons-httpclient*.jar'\
-#            -o -name 'jackrabbit-webdav*.jar'\
-#            -o -name 'commons-logging*.jar'\
-#            -o -name 'javax.mail*.jar'\
-#            -o -name 'commons-codec*.jar'\
-#            -o -name 'htmlcleaner*.jar'\
-#            )\
-#          ./lib/
-
-# We run headless. No junit tests, ant tasks, graphics support and winrun deps.
-RUN mv -v $(for dep in activation commons-codec commons-collections\
-                       commons-httpclient commons-logging hamcrest-core\
-                       htmlcleaner httpclient httpcore jackrabbit-webdav\
-                       javax.mail jcharset jcifs jdom jettison log4j slf4j-api\
-                       slf4j-log4j12 stax-api stax2-api woodstox-core;\
-            do find ./lib/ ~/.m2/repository/ -name "${dep}*.jar"\
-               | sort\
-               | tail -n 1;\
-            done)\
-     ./lib/
+RUN mv -v $(sed -ne 's/^.*:\([^:]*\.jar\)$/\1/p' /tmp/deps\
+            | grep -v '/(\|junit\|libgrowl\|servlet-api\|swt\|winrun4j\|jcifs\|)-.*\.jar$'\
+    ) ./lib/
 
 #activation commons-codec commons-collections 
 #commons-httpclient commons-logging hamcrest-core\
