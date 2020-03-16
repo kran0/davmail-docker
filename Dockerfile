@@ -1,13 +1,6 @@
 FROM alpine:3.11 AS builder
 
 #trunk rev HEAD (may be unstable)
-#4.8.5 rev 2589
-#4.8.6 rev 2600
-#4.9.0 rev 2652
-#5.0.0 rev 2801
-#5.1.0 rev 2891
-#5.2.0 rev 2961
-#5.3.1 rev 3079
 #5.4.0 rev 3135
 ARG DAVMAIL_REV=3135
 
@@ -25,15 +18,12 @@ RUN cd /davmail-code\
 RUN mkdir -vp /target/davmail /target/davmail/lib
 WORKDIR /target/davmail
 
-RUN mv -v $(sed -ne 's/^.*:\([^:]*\.jar\)$/\1/p' /tmp/deps\
-            | grep -v '/(\|junit\|libgrowl\|servlet-api\|swt\|winrun4j\|jcifs\|)-.*\.jar$'\
-    ) ./lib/
+# --build-arg EXCLUDE_DEPS='NOTHING_EXCLUDE'
+ARG EXCLUDE_DEPS='junit libgrowl servlet-api swt winrun4j jcifs'
 
-#activation commons-codec commons-collections 
-#commons-httpclient commons-logging hamcrest-core\
-#htmlcleaner httpclient httpcore jackrabbit-webdav\
-#javax.mail jcharset jcifs jdom jettison log4j\
-#slf4j-api slf4j-log4j12 stax-api stax2-api woodstox-core
+RUN mv -v $(sed -ne 's/^.*:\([^:]*\.jar\)$/\1/p' /tmp/deps\
+            | grep -v '/(\|'$(printf '%s\|' ${EXCLUDE_DEPS})')-.*\.jar$'\
+    ) ./lib/
 
 RUN mv -v /davmail-code/target/davmail-*.jar .
 RUN ln -s davmail-*.jar davmail.jar
