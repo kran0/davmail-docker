@@ -19,7 +19,7 @@ RUN svn co -r ${DAVMAIL_REV} https://svn.code.sf.net/p/davmail/code/trunk /davma
 
 # Build + Prepare result
 RUN cd /davmail-code\
- && mvn clean package
+ && mvn clean package\
  && mvn dependency:resolve -DoutputAbsoluteArtifactFilename=true -DoutputFile=/tmp/deps
 
 RUN mkdir -vp /target/davmail /target/davmail/lib
