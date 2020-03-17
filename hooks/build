@@ -5,13 +5,13 @@ echo "------ HOOK START - BUILD -------"
 BUILD_ARGS=
 
 # Build headless: no junit tests, graphics support and winrun and such
-BUILD_ARGS+=" --build-arg EXCLUDE_DEPS=junit;libgrowl;servlet-api;swt;winrun4j"
+BUILD_ARGS="${BUILD_ARGS} --build-arg EXCLUDE_DEPS=junit;libgrowl;servlet-api;swt;winrun4j"
 
 # if ${DOCKER_TAG} ~= /^trunk/
-[ "${DOCKER_TAG:0:5}" = "trunk" ] && BUILD_ARGS+=" --build-arg DAVMAIL_REV=HEAD"
+[ "${DOCKER_TAG:0:5}" = "trunk" ] && BUILD_ARGS="${BUILD_ARGS} --build-arg DAVMAIL_REV=HEAD"
 
 # if ${DOCKER_TAG} ~= /-tiny$/
-[ "${DOCKER_TAG: -4}" == "tiny" ] && BUILD_ARGS+=" --build-arg BASE_IMAGE=kran0/tiny:openjdk8-jre"
+[ "${DOCKER_TAG: -4}" == "tiny" ] && BUILD_ARGS="${BUILD_ARGS} --build-arg BASE_IMAGE=kran0/tiny:openjdk8-jre"
 
 docker build ${BUILD_ARGS} -t ${IMAGE_NAME} .
 
