@@ -1,12 +1,14 @@
 #!/bin/sh
 
 echo "------ HOOK START - BUILD -------"
-#printenv
-#set -x
 
 BUILD_ARGS=
-[ "$DOCKER_TAG" = "trunk" ] && BUILD_ARGS='--build-arg DAVMAIL_REV=HEAD'
 
-docker build $BUILD_ARGS -t $IMAGE_NAME .
+# Unused for headless, we dont need no junit tests, graphics support and winrun
+BUILD_ARGS+=" --build-arg EXCLUDE_DEPS=junit;libgrowl;servlet-api;swt;winrun4j"
+
+[ "${DOCKER_TAG}" = "trunk" ] && BUILD_ARGS+=" --build-arg DAVMAIL_REV=HEAD"
+
+docker build ${BUILD_ARGS} -t ${IMAGE_NAME} .
 
 echo "------ HOOK END - BUILD -------"
