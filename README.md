@@ -34,6 +34,9 @@ The davmail.properties [example and references](http://davmail.sourceforge.net/s
 
 | Repository:Tag | Build description  |
 |:-:|---|
-| kran0/davmail-docker:latest | latest stable release with the latest Dockerfile |
-| kran0/davmail-docker:trunk  | latest revision in SVN repo. *May be unstable!*  |
-| kran0/davmail-docker:4.8.6  | previously released tagged stable release        |
+| kran0/davmail-docker:latest      | latest stable release with the latest Dockerfile |
+| kran0/davmail-docker:tiny        | latest stable release with the latest Dockerfile built FROM [kran0/tiny:openjdk8-jre](https://hub.docker.com/r/kran0/tiny/tags) |
+| kran0/davmail-docker:trunk       | HEAD rev in SVN repo. *May be unstable!* |
+| kran0/davmail-docker:trunk-tiny  | HEAD rev in SVN repo. *May be unstable!* built FROM [kran0/tiny:openjdk8-jre](https://hub.docker.com/r/kran0/tiny/tags) |
+| kran0/davmail-docker:x.y.z       | tagged stable release |
+| kran0/davmail-docker:x.y.z-tiny  | tagged stable release built FROM [kran0/tiny:openjdk8-jre](https://hub.docker.com/r/kran0/tiny/tags) |
