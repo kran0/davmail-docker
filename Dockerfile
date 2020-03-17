@@ -1,3 +1,5 @@
+ARG BASE_IMAGE=openjdk:8-jre-alpine
+
 FROM alpine:3.11 AS builder
 
 #trunk rev HEAD (may be unstable)
@@ -33,7 +35,7 @@ RUN cd /target/davmail\
 
 ## Build completed, the result is in in the builder:/target directory ##
 
-ARG BASE_IMAGE=openjdk:8-jre-alpine
+
 FROM ${BASE_IMAGE}
 
 COPY --from=builder /target /
