@@ -1,15 +1,14 @@
 #!/bin/sh
 
 echo "------ HOOK START - BUILD -------"
-
-BUILD_ARGS=
+BA=
 
 # Build headless: no junit tests, graphics support and winrun and such
-BUILD_ARGS="${BUILD_ARGS} --build-arg EXCLUDE_DEPS=junit;libgrowl;servlet-api;swt;winrun4j"
+BA="${BA} --build-arg EXCLUDE_DEPS=junit;libgrowl;servlet-api;swt;winrun4j"
 
-[[ "${DOCKER_TAG}" =~ ^trunk ]] && BUILD_ARGS="${BUILD_ARGS} --build-arg DAVMAIL_REV=HEAD"
-[[ "${DOCKER_TAG}" =~ tiny$ ]] && BUILD_ARGS="${BUILD_ARGS} --build-arg BASE_IMAGE=kran0/tiny:openjdk8-jre"
+echo "${DOCKER_TAG}" | grep '^trunk' && BA="${BA} --build-arg DAVMAIL_REV=HEAD"
+echo "${DOCKER_TAG}" | grep 'tiny$'  && BA="${BA} --build-arg BASE_IMAGE=kran0/tiny:openjdk8-jre"
 
-docker build ${BUILD_ARGS} -t ${IMAGE_NAME} .
+docker build ${BA} -t ${IMAGE_NAME} .
 
 echo "------ HOOK END - BUILD -------"
