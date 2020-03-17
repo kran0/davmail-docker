@@ -11,8 +11,8 @@ BUILD_ARGS+=" --build-arg EXCLUDE_DEPS=junit;libgrowl;servlet-api;swt;winrun4j"
 [ "${DOCKER_TAG:0:5}" = "trunk" ] && BUILD_ARGS+=" --build-arg DAVMAIL_REV=HEAD"
 
 # if ${DOCKER_TAG} ~= /-tiny$/
-[ "${DOCKER_TAG: -5}" == "-tiny" ] && BUILD_ARGS+=" --build-arg BASE_IMAGE=kran0/tiny:openjdk8-jre"
+[ "${DOCKER_TAG: -4}" == "tiny" ] && BUILD_ARGS+=" --build-arg BASE_IMAGE=kran0/tiny:openjdk8-jre"
 
-echo docker build ${BUILD_ARGS} -t ${IMAGE_NAME} .
+docker build ${BUILD_ARGS} -t ${IMAGE_NAME} .
 
 echo "------ HOOK END - BUILD -------"
