@@ -6,8 +6,9 @@ FROM alpine:3.11 AS builder
 ARG DAVMAIL_REV=3135
 
 #exclude these deps in target
-ARG DEPS_EXCLUDE_ARTIFACTIDS=
-ARG DEPS_EXCLUDE_GROUPIDS=
+# Default headless: no junit tests, graphics support and winrun
+ARG DEPS_EXCLUDE_ARTIFACTIDS='winrun4j,servlet-api,junit,swt,growl'
+ARG DEPS_EXCLUDE_GROUPIDS='org.boris.winrun4j,javax.servlet,junit,org.eclipse,info.growl'
 
 # Install tools
 RUN apk add --update --no-cache openjdk8 maven subversion
