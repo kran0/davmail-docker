@@ -1,5 +1,4 @@
 ARG BASE_IMAGE=openjdk:8-jre-alpine
-
 FROM alpine:3.11 AS builder
 
 #trunk rev HEAD (may be unstable)
@@ -7,7 +6,8 @@ FROM alpine:3.11 AS builder
 ARG DAVMAIL_REV=3135
 
 #exclude these deps in target
-ARG EXCLUDE_DEPS='NOTHING_EXCLUDE'
+ARG DEPS_EXCLUDE_ARTIFACTIDS=
+ARG DEPS_EXCLUDE_GROUPIDS=
 
 # Install tools
 RUN apk add --update --no-cache openjdk8 maven subversion
@@ -18,23 +18,22 @@ RUN svn co -r ${DAVMAIL_REV} https://svn.code.sf.net/p/davmail/code/trunk /davma
 # Build + List deps to tempfile
 RUN cd /davmail-code\
  && mvn clean package\
- && mvn dependency:resolve -DoutputAbsoluteArtifactFilename=true -DoutputFile=/tmp/deps
+ && mvn dependency:resolve\
+     -DexcludeArtifactIds="${DEPS_EXCLUDE_ARTIFACTIDS}"\
+     -DexcludeGroupIds="${DEPS_EXCLUDE_GROUPIDS}"\
+     -DoutputAbsoluteArtifactFilename=true\
+     -DoutputFile=/tmp/deps
 
 # Create target directory
 RUN mkdir -vp /target/davmail /target/davmail/lib
 
-# Move deps to target-lib
-RUN mv -v $(sed -ne 's/^.*:\([^:]*\.jar\)$/\1/p' /tmp/deps\
-            | grep -v '/(\|'$(printf '%s\|' ${EXCLUDE_DEPS//;/ })')-.*\.jar$'\
-    ) /target/davmail/lib/
-
-# Move davmail to target
+# Move dependencies and davmail to target, link davmail to pretty short name
+RUN mv -v $( sed -ne 's/^.*:\([^:]*\.jar\)$/\1/p' /tmp/deps ) /target/davmail/lib/
 RUN mv -v /davmail-code/target/davmail-*.jar /target/davmail/
 RUN cd /target/davmail\
  && ln -s davmail-*.jar davmail.jar
 
 ## Build completed, the result is in in the builder:/target directory ##
-
 
 FROM ${BASE_IMAGE}
 
