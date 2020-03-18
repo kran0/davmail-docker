@@ -3,10 +3,6 @@
 echo "------ HOOK START - BUILD -------"
 BA=
 
-# Build headless: no junit tests, graphics support and winrun and such
-#DEPS_EXCLUDE_GROUPIDS="org.boris.winrun4j,javax.servlet,junit,org.eclipse,info.growl"
-BA="${BA} --build-arg DEPS_EXCLUDE_ARTIFACTIDS=winrun4j,servlet-api,junit,swt,growl"
-
 echo "${DOCKER_TAG}" | grep '^trunk' && BA="${BA} --build-arg DAVMAIL_REV=HEAD"
 echo "${DOCKER_TAG}" | grep 'tiny$'  && BA="${BA} --build-arg BASE_IMAGE=kran0/tiny:openjdk8-jre"
 
