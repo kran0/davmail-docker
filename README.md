@@ -7,12 +7,12 @@ The information, code and support: http://davmail.sourceforge.net/ .
 
 # How to run?
 
-## #1 - Edit your config
-
-The davmail.properties [example and references](http://davmail.sourceforge.net/serversetup.html).
-Please place your config to ```./conf/davmail.properties``` and change start scenarios to use them.
-
 ## Simple docker-compose
+
+- Please read the davmail.properties [example and references](http://davmail.sourceforge.net/serversetup.html);
+- Place your config to ```./conf/davmail.properties``` use example:```./conf/davmail.properties.example```;
+- Edit docker-compose.yaml to use volume ```./conf/davmail.properties``` instead of ```./conf/davmail.properties.example```;
+- Run service:
 
 ```bash
   docker-compose up -d
