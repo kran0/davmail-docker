@@ -7,6 +7,20 @@ The information, code and support: http://davmail.sourceforge.net/ .
 
 # How to run?
 
+## #1 - Edit your config
+
+The davmail.properties [example and references](http://davmail.sourceforge.net/serversetup.html).
+Please place your config to ```./conf/davmail.properties``` and change start scenarios to use them.
+
+## Simple docker-compose
+
+```bash
+  docker-compose up -d
+  dockr-compose down
+```
+
+## Simple docker run
+
 ```bash
 $ docker run -it --rm\
    -v $PWD/conf/davmail.properties.example:/davmail/davmail.properties\
@@ -25,8 +39,6 @@ Add more `-p HOST_PORT:CONTAINER_PORT` to get more:
 | LDAP   | 1389 |
 | POP    | 1110 |
 | SMTP   | 1025 |
-
-The davmail.properties [example and references](http://davmail.sourceforge.net/serversetup.html).
 
 # Docker tags
 

@@ -1,0 +1,25 @@
+#!/usr/bin/env -S docker-compose -f
+
+version: "3"
+
+services:
+  davmail:
+
+#    build:
+#      context: .
+#      dockerfile: Dockerfile
+## build-args (Not recommended! Please use defaults)
+#      args:
+#        DAVMAIL_REV: "HEAD"
+#        BASE_IMAGE: "kran0/tiny:openjdk8-jre""
+
+    image: kran0/davmail-docker:latest
+    volumes:
+      - ./conf/davmail.properties.example:/davmail/davmail.properties
+    ports:
+      - 1080:1080
+      - 1143:1143
+      - 1389:1389
+      - 1110:1110
+      - 1025:1025
+    restart: on-failure
