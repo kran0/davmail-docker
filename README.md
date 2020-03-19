@@ -1,4 +1,4 @@
-[DavMail](http://davmail.sourceforge.net/) POP/IMAP/SMTP/Caldav/Carddav/LDAP Exchange Gateway
+[DavMail][link_davmail_home] POP/IMAP/SMTP/Caldav/Carddav/LDAP Exchange Gateway
 
 # What is it?
 
@@ -30,21 +30,23 @@ The davmail.properties [example and references](http://davmail.sourceforge.net/s
 
 # Docker tags
 
-[![Build][badge_docker_automated]][link_docker_tags]
+[![Automated][badge_docker_automated]][link_docker_tags]
 [![Build][badge_docker_build]][link_docker_builds]
 
-| Repository:Tag | Build description |
+| Repository:Tag | Description |
 |:--|---|
 | kran0/davmail-docker:latest     | latest stable release with the latest Dockerfile |
-| kran0/davmail-docker:tiny       | latest stable release with the latest Dockerfile built FROM [kran0/tiny:openjdk8-jre](https://hub.docker.com/r/kran0/tiny/tags) |
 | kran0/davmail-docker:trunk      | HEAD rev in SVN repo. *May be unstable!*         |
-| kran0/davmail-docker:trunk-tiny | HEAD rev in SVN repo. *May be unstable!* built FROM [kran0/tiny:openjdk8-jre](https://hub.docker.com/r/kran0/tiny/tags)         |
 | kran0/davmail-docker:x.y.z      | tagged stable release [![Semver][badge_docker_semver]][link_docker_tags] |
-| kran0/davmail-docker:x.y.z-tiny | tagged stable release built FROM [kran0/tiny:openjdk8-jre](https://hub.docker.com/r/kran0/tiny/tags)                            |
+| kran0/davmail-docker:tiny       | **experimental** latest stable release with the latest Dockerfile built FROM [kran0/tiny:openjdk8-jre][link_tinyimage] |
+| kran0/davmail-docker:trunk-tiny | **experimental** HEAD rev in SVN repo. *May be unstable!* built FROM [kran0/tiny:openjdk8-jre][link_tinyimage]         |
+| kran0/davmail-docker:x.y.z-tiny | **experimental** tagged stable release built FROM [kran0/tiny:openjdk8-jre][link_tinyimage]                            |
 
 ---
 [badge_docker_automated]:https://img.shields.io/docker/automated/kran0/davmail-docker?style=for-the-badge&cacheSeconds=3600
 [badge_docker_build]:https://img.shields.io/docker/build/kran0/davmail-docker?style=for-the-badge&cacheSeconds=3600
-[badge_docker_semver]:https://img.shields.io/docker/v/kran0/davmail-docker?sort=semver&style=for-the-badge&cacheSeconds=3600
+[badge_docker_semver]:https://img.shields.io/docker/v/kran0/davmail-docker?sort=semver&style=social&cacheSeconds=3600
 [link_docker_tags]:https://hub.docker.com/r/kran0/davmail-docker/tags?page=1&ordering=last_updated
 [link_docker_builds]:https://hub.docker.com/r/kran0/davmail-docker/builds
+[link_davmail_home]:http://davmail.sourceforge.net/
+[link_tinyimage]:https://hub.docker.com/r/kran0/tiny/tags
