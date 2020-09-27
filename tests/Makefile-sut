@@ -1,0 +1,21 @@
+.PHONY: tests prepare test1 test2 test3 test4 test5
+
+tests: test1 test2 test3 test4 test5
+
+test1: prepare
+	nc -vo - ${TARGET_HOST} 1080 < /dev/null
+
+test2: prepare
+	nc -vo - ${TARGET_HOST} 1143 < /dev/null
+
+test3: prepare
+	nc -vo - ${TARGET_HOST} 1389 < /dev/null
+
+test4: prepare
+	nc -vo - ${TARGET_HOST} 1110 < /dev/null
+
+test5: prepare
+	nc -vo - ${TARGET_HOST} 1025 < /dev/null
+
+prepare:
+	sleep 10s

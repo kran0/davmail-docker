@@ -1,0 +1,10 @@
+ARG ALPINE_VERSION=3.12.0
+FROM alpine:${ALPINE_VERSION}
+
+COPY Makefile-sut /
+
+ARG ADD_PACKAGES=make
+
+RUN apk add --update --no-cache ${ADD_PACKAGES}
+
+ENTRYPOINT [ "make", "--jobs=8", "--makefile=/Makefile-sut" ]

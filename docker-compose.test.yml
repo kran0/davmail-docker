@@ -1,0 +1,18 @@
+version: '2'
+services:
+  sut:
+    depends_on:
+      - davmail
+    build:
+      context: ./tests
+      dockerfile: Dockerfile-sut
+      args:
+        ADD_PACKAGES: make
+    environment:
+      TARGET_HOST: davmail
+    command: tests
+
+  davmail:
+    image: ${IMAGE_NAME}
+    volumes:
+      - ./conf/davmail.properties.example:/davmail/davmail.properties
