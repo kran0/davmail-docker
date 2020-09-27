@@ -3,19 +3,19 @@
 tests: test1 test2 test3 test4 test5
 
 test1: prepare
-	nc -vo - -w 5 ${TARGET_HOST} 1080 < /dev/null
+	echo 'GET / HTTP/1.1' | nc -vo - -w 5 ${TARGET_HOST} 1080 < /dev/null | grep '^HTTP/1.1'
 
 test2: prepare
-	nc -vo - -w 5 ${TARGET_HOST} 1143 < /dev/null
+	nc -vo - -w 5 ${TARGET_HOST} 1143 < /dev/null | grep '* OK '
 
 test3: prepare
 	nc -vo - -w 5 ${TARGET_HOST} 1389 < /dev/null
 
 test4: prepare
-	nc -vo - -w 5 ${TARGET_HOST} 1110 < /dev/null
+	nc -vo - -w 5 ${TARGET_HOST} 1110 < /dev/null | grep '^+OK '
 
 test5: prepare
-	nc -vo - -w 5 ${TARGET_HOST} 1025 < /dev/null
+	nc -vo - -w 5 ${TARGET_HOST} 1025 < /dev/null | grep '^220 '
 
 prepare:
-	sleep 20s
+	sleep 10s
