@@ -3,7 +3,7 @@
 tests: test1 test2 test3 test4 test5
 
 test1: prepare
-	echo 'GET / HTTP/1.1' | nc -vo - -w 5 ${TARGET_HOST} 1080 < /dev/null | grep '^HTTP/1.1'
+	echo 'GET / HTTP/1.1' | nc -vo - -w 5 ${TARGET_HOST} 1080 | grep '^HTTP/1.1'
 
 test2: prepare
 	nc -vo - -w 5 ${TARGET_HOST} 1143 < /dev/null | grep '* OK '
