@@ -13,7 +13,7 @@ ARG DEPS_EXCLUDE_ARTIFACTIDS='winrun4j,servlet-api,junit,swt,growl'
 ARG DEPS_EXCLUDE_GROUPIDS='org.boris.winrun4j,javax.servlet,junit,org.eclipse,info.growl'
 
 # Install tools
-RUN apk add --update --no-cache --no-scripts openjdk8 maven subversion
+RUN apk add --update --no-cache -vv openjdk8 maven subversion
 
 # Get svn TRUNK or released REVISION based on build-arg: DAVMAIL_REV
 RUN svn co -r ${DAVMAIL_REV} https://svn.code.sf.net/p/davmail/code/trunk /davmail-code
