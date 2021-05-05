@@ -1,11 +1,15 @@
 #!/bin/sh
 
-echo "------ HOOK START - BUILD -------"
-BA=
+echo "------ HOOK START - BUILDX BUILD -------"
+BUILD_ARGS=
 
-echo "${DOCKER_TAG}" | grep '^trunk' && BA="${BA} --build-arg DAVMAIL_REV=HEAD"
-echo "${DOCKER_TAG}" | grep 'tiny$'  && BA="${BA} --build-arg BASE_IMAGE=kran0/tiny:openjdk8-jre"
+echo "${DOCKER_TAG}" | grep '^trunk' && BUILD_ARGS="${BUILD_ARGS} --build-arg DAVMAIL_REV=HEAD"
+echo "${DOCKER_TAG}" | grep 'tiny$'  && BUILD_ARGS="${BUILD_ARGS} --build-arg BASE_IMAGE=kran0/tiny:openjdk8-jre"
 
-docker build ${BA} -t ${IMAGE_NAME} .
+#docker build ${BUILD_ARGS} -t ${IMAGE_NAME} .
+docker buildx build --push\
+ --platform linux/arm/v7,linux/arm64/v8,linux/amd64\
+ ${BUILD_ARGS}\
+ --tag -t ${IMAGE_NAME} .
 
-echo "------ HOOK END - BUILD -------"
+echo "------ HOOK END - BUILDX BUILD -------"
