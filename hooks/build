@@ -7,7 +7,7 @@ echo "${DOCKER_TAG}" | grep '^trunk' && BUILD_ARGS="${BUILD_ARGS} --build-arg DA
 echo "${DOCKER_TAG}" | grep 'tiny$'  && BUILD_ARGS="${BUILD_ARGS} --build-arg BASE_IMAGE=kran0/tiny:openjdk8-jre"
 
 #docker build ${BUILD_ARGS} -t ${IMAGE_NAME} .
-docker buildx build --push\
+docker buildx build\
  --platform linux/arm/v7,linux/arm64/v8,linux/amd64\
  ${BUILD_ARGS}\
  --tag ${IMAGE_NAME} .
