@@ -10,6 +10,6 @@ echo "${DOCKER_TAG}" | grep 'tiny$'  && BUILD_ARGS="${BUILD_ARGS} --build-arg BA
 docker buildx build --push\
  --platform linux/arm/v7,linux/arm64/v8,linux/amd64\
  ${BUILD_ARGS}\
- --tag -t ${IMAGE_NAME} .
+ --tag ${IMAGE_NAME} .
 
 echo "------ HOOK END - BUILDX BUILD -------"
