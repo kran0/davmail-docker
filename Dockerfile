@@ -1,11 +1,12 @@
 ARG BASE_IMAGE=openjdk:8-jre-alpine
-FROM alpine:3.13 AS builder
+FROM alpine:3.15 AS builder
 
 #trunk rev HEAD (may be unstable)
 #5.4.0 rev 3135
 #5.5.0 rev 3293
 #5.5.1 rev 3299
-ARG DAVMAIL_REV=3299
+#6.0.1 rev 3990
+ARG DAVMAIL_REV=3990
 
 #exclude these deps in target
 # Default headless: no junit tests, graphics support and winrun
