@@ -5,8 +5,8 @@ FROM alpine:3.15 AS builder
 #5.4.0 rev 3135
 #5.5.0 rev 3293
 #5.5.1 rev 3299
-#6.0.1 rev 3990
-ARG DAVMAIL_REV=3990
+#6.0.1 rev 3390
+ARG DAVMAIL_REV=3390
 
 #exclude these deps in target
 # Default headless: no junit tests, graphics support and winrun
