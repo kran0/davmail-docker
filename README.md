@@ -42,8 +42,7 @@ Add more `-p HOST_PORT:CONTAINER_PORT` to get more:
 
 # Docker tags
 
-[![Automated][badge_docker_automated]][link_docker_tags]
-[![Build][badge_docker_build]][link_docker_builds]
+[![Builds][badge_build_status]][link_docker_tags]
 
 | Repository:Tag | Description |
 |:--|---|
@@ -55,10 +54,8 @@ Add more `-p HOST_PORT:CONTAINER_PORT` to get more:
 | kran0/davmail-docker:x.y.z-tiny | **experimental** tagged stable release built FROM [kran0/tiny:openjdk8-jre][link_tinyimage]                            |
 
 ---
-[badge_docker_automated]:https://img.shields.io/docker/automated/kran0/davmail-docker?style=for-the-badge&cacheSeconds=3600
-[badge_docker_build]:https://img.shields.io/docker/build/kran0/davmail-docker?style=for-the-badge&cacheSeconds=3600
+[badge_build_status]:https://github.com/kran0/davmail-docker/actions/workflows/build_images.yml/badge.svg
 [badge_docker_semver]:https://img.shields.io/docker/v/kran0/davmail-docker?sort=semver&style=social&cacheSeconds=3600
 [link_docker_tags]:https://hub.docker.com/r/kran0/davmail-docker/tags?page=1&ordering=last_updated
-[link_docker_builds]:https://hub.docker.com/r/kran0/davmail-docker/builds
 [link_davmail_home]:http://davmail.sourceforge.net/
 [link_tinyimage]:https://hub.docker.com/r/kran0/tiny/tags
