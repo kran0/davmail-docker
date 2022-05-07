@@ -8,7 +8,7 @@ on:
     tags:
       - '*.*.*'
   schedule:
-    - cron: '*/15 * * * *'
+    - cron: '*/5 * * * *'
 
 jobs:
   docker:
@@ -39,12 +39,13 @@ jobs:
           # If event type schedule, then force build the trunk HEAD
           if [[ $GITHUB_EVENT_NAME == 'schedule' ]]; then
             TAGS="${DOCKER_IMAGE}:trunk"
-            ARGS="DAVMAIL_REV=HEAD"
+            BUILD_ARGS="DAVMAIL_REV=HEAD"
           fi
 
           # Set output parameters.
           echo ::set-output name=tags::${TAGS}
           echo ::set-output name=docker_image::${DOCKER_IMAGE}
+          echo ::set-output name=build_args::${BUILD_ARGS}
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v2
