@@ -8,7 +8,7 @@ on:
     tags:
       - '*.*.*'
   schedule:
-    - cron: '*/5 * * * *'
+    - cron: '15 5 * * sun,tue,thu,sat'
 
 jobs:
   docker:
@@ -28,6 +28,7 @@ jobs:
             VERSION=${GITHUB_REF#refs/tags/}
           fi
           TAGS="${DOCKER_IMAGE}:${VERSION}"
+          TEST_TAG="${TAGS}"
 
           # If the VERSION looks like a version number, assume that
           # this is the most recent version of the image and also
@@ -39,11 +40,13 @@ jobs:
           # If event type schedule, then force build the trunk HEAD
           if [[ $GITHUB_EVENT_NAME == 'schedule' ]]; then
             TAGS="${DOCKER_IMAGE}:trunk"
+            TEST_TAG="${TAGS}"
             BUILD_ARGS="DAVMAIL_REV=HEAD"
           fi
 
           # Set output parameters.
           echo ::set-output name=tags::${TAGS}
+          echo ::set-output name=test_tag::${TEST_TAG}
           echo ::set-output name=docker_image::${DOCKER_IMAGE}
           echo ::set-output name=build_args::${BUILD_ARGS}
 
@@ -69,8 +72,17 @@ jobs:
           builder: ${{ steps.buildx.outputs.name }}
           context: .
           file: ./Dockerfile
-#          platforms: linux/amd64,linux/arm64,linux/ppc64le
           platforms: linux/amd64,linux/arm64
           push: true
           tags: ${{ steps.prep.outputs.tags }}
           build-args: ${{ steps.prep.outputs.build_args }}
+
+      - name: Test
+        env:
+          COMPOSE_FILE: ./docker-compose.test.yml
+          IMAGE_NAME: ${{ steps.prep.outputs.test_tag }}
+        run: |
+         set -e
+         docker-compose up -d davmail
+         docker-compose up sut
+         docker-compose down
