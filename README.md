@@ -47,11 +47,7 @@ Add more `-p HOST_PORT:CONTAINER_PORT` to get more:
 | Repository:Tag | Description |
 |:--|---|
 | kran0/davmail-docker:latest     | latest stable release with the latest Dockerfile |
-| kran0/davmail-docker:trunk      | HEAD rev in SVN repo. *May be unstable!*         |
 | kran0/davmail-docker:x.y.z      | tagged stable release [![Semver][badge_docker_semver]][link_docker_tags] |
-| kran0/davmail-docker:tiny       | **experimental** latest stable release with the latest Dockerfile built FROM [kran0/tiny:openjdk8-jre][link_tinyimage] |
-| kran0/davmail-docker:trunk-tiny | **experimental** HEAD rev in SVN repo. *May be unstable!* built FROM [kran0/tiny:openjdk8-jre][link_tinyimage]         |
-| kran0/davmail-docker:x.y.z-tiny | **experimental** tagged stable release built FROM [kran0/tiny:openjdk8-jre][link_tinyimage]                            |
 
 ---
 [badge_build_status]:https://github.com/kran0/davmail-docker/actions/workflows/build_images.yml/badge.svg
