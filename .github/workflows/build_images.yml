@@ -79,10 +79,9 @@ jobs:
 
       - name: Test
         env:
-          COMPOSE_FILE: ./docker-compose.test.yml
+          COMPOSE_FILE: ./tests/compose-sut.yaml
           IMAGE_NAME: ${{ steps.prep.outputs.test_tag }}
         run: |
          set -e
-         docker-compose up -d davmail
          docker-compose up sut
          docker-compose down

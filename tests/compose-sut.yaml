@@ -4,7 +4,7 @@ services:
     depends_on:
       - davmail
     build:
-      context: ./tests
+      context: .
       dockerfile: Dockerfile-sut
       args:
         ADD_PACKAGES: make
@@ -15,4 +15,4 @@ services:
   davmail:
     image: ${IMAGE_NAME}
     volumes:
-      - ./conf/davmail.properties.example:/davmail/davmail.properties
+      - ../conf/davmail.properties.example:/davmail/davmail.properties
