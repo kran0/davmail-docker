@@ -26,7 +26,8 @@ jobs:
           if [[ $GITHUB_REF == refs/tags/* ]]; then
             VERSION=${GITHUB_REF#refs/tags/}
           fi
-          TAGS="${DOCKER_IMAGE}:${VERSION},${DOCKER_IMAGE}:${SHORTREF}"
+#          TAGS="${DOCKER_IMAGE}:${VERSION},${DOCKER_IMAGE}:${SHORTREF}"
+          TAGS="${DOCKER_IMAGE}:${VERSION}"
 
           # If the VERSION looks like a version number, assume that
           # this is the most recent version of the image and also
