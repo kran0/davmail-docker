@@ -1,5 +1,8 @@
 #!/bin/bash -ex
 
+#
+# This file is not the entrypoint itself!
+#
 # Unfortunately davmail.Settings is not supporting environment-based
 # configuration: https://sourceforge.net/p/davmail/code/HEAD/tree/trunk/src/java/davmail/Settings.java
 #
