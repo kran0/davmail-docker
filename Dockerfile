@@ -14,7 +14,7 @@ ARG DEPS_EXCLUDE_ARTIFACTIDS='winrun4j,servlet-api,junit,swt,growl'
 ARG DEPS_EXCLUDE_GROUPIDS='org.boris.winrun4j,javax.servlet,junit,org.eclipse,info.growl'
 
 # Install tools
-RUN apk add --update --no-cache openjdk8 maven subversion
+RUN apk add --update --no-cache openjdk8 maven subversion bash
 
 # Get svn TRUNK or released REVISION based on build-arg: DAVMAIL_REV
 RUN svn co -r ${DAVMAIL_REV} https://svn.code.sf.net/p/davmail/code/trunk /davmail-code
@@ -36,6 +36,11 @@ RUN mv -v $( sed -ne 's/^.*:\([^:]*\.jar\)$/\1/p' /tmp/deps ) /target/davmail/li
 RUN mv -v /davmail-code/target/davmail-*.jar /target/davmail/
 RUN cd /target/davmail\
  && ln -s davmail-*.jar davmail.jar
+
+# Make entrypoint
+COPY entrypoint-generator.sh /davmail-entrypoint/generator
+RUN /davmail-entrypoint/generator /davmail-code/src/etc/davmail.properties > /target/entrypoint\
+ && chmod a+x /target/entrypoint
 
 ## Build completed, the result is in in the builder:/target directory ##
 
