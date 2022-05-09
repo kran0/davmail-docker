@@ -10,8 +10,7 @@ The information, code and support: http://davmail.sourceforge.net/ .
 ## Simple docker-compose
 
 - Please read the davmail.properties [example and references](http://davmail.sourceforge.net/serversetup.html);
-- Place your config to ```./conf/davmail.properties``` use example:```./conf/davmail.properties.example```;
-- Edit docker-compose.yaml to use volume ```./conf/davmail.properties``` instead of ```./conf/davmail.properties.example```;
+- Edit [docker-compose.yaml](docker-compose.yaml) to et environment variables;
 - Run service:
 
 ```bash
@@ -23,22 +22,27 @@ The information, code and support: http://davmail.sourceforge.net/ .
 
 ```bash
 $ docker run -it --rm\
-   -v $PWD/conf/davmail.properties.example:/davmail/davmail.properties\
+   -e DAVMAIL_SERVER=true
    -p 1025:1025\
    -p 1110:1110\
    kran0/davmail-docker:latest
 ```
 
-Example run command publishes 1025 (SMTP) and 1110 (POP).
-Add more `-p HOST_PORT:CONTAINER_PORT` to get more:
+Example run command publishes 1025 (SMTP) and 1110 (POP), and uses only one environment varialbe.
+Please watch the example configs in [docker-compose.yaml](docker-compose.yaml) and [tests/compose-sut.yaml](tests/compose-sut.yaml)
+and the official DavMail configuration [example and references](http://davmail.sourceforge.net/serversetup.html)
 
-| Description | TCP port number |
-|:-:|---|
-| CalDav | 1080 |
-| IMAP   | 1143 |
-| LDAP   | 1389 |
-| POP    | 1110 |
-| SMTP   | 1025 |
+### Run using old-fasion text-based config
+
+/Just add config path as command after the image TAG/
+
+```bash
+$ docker run -it --rm\
+   -v $PWD/conf/davmail.properties.example:/davmail/davmail.properties\
+   -p 1025:1025\
+   -p 1110:1110\
+   kran0/davmail-docker:latest /davmail/davmail.properties
+```
 
 # Docker tags
 

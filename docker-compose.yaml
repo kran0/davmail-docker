@@ -5,6 +5,7 @@ version: "3"
 
 services:
   davmail:
+    image: kran0/davmail-docker:latest
 
 #    build:
 #      context: .
@@ -15,8 +16,29 @@ services:
 #        BASE_IMAGE: "kran0/tiny:openjdk8-jre""
 
     image: kran0/davmail-docker:latest
-    volumes:
-      - ./conf/davmail.properties.example:/davmail/davmail.properties
+
+# The env setting documentation: http://davmail.sourceforge.net/serversetup.html
+# Env vars are the same, but must be provided in BASH_FORMAT.
+# E.g. in UPPERCASE and with "_" instead of the dots as WORD_DELIMITER.
+# Some simple examples provided here, please see more in tests/compose-sut.yaml
+    environment:
+      - DAVMAIL_SERVER=true
+      - DAVMAIL_CALDAVPORT=1080
+      - DAVMAIL_IMAPPORT=1143
+      - DAVMAIL_LDAPPORT=1389
+      - DAVMAIL_POPPORT=1110
+      - DAVMAIL_SMTPPORT=1025
+      - DAVMAIL_ALLOWREMOTE=true
+      - DAVMAIL_DISABLEUPDATECHECK=true
+      - DAVMAIL_LOGFILEPATH=/dev/stdout
+# Yes, you can set JAVA_OPTS here too
+      - JAVA_OPTS=-Xmx512M -Dsun.net.inetaddr.ttl=30
+
+# You can use old-fasion text-based config, provided by external volume
+# If the command is set, then environment is mostly ignored
+#    volumes:
+#      - ./conf/davmail.properties.example:/davmail/davmail.properties
+#    command: [ "/davmail/davmail.properties" ]
     ports:
       - 1080:1080
       - 1143:1143
