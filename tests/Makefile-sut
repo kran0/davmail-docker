@@ -1,21 +1,13 @@
-.PHONY: tests prepare test1 test2 test3 test4 test5
+.PHONY: tests
 
-tests: test1 test2 test3 test4 test5
+tests: ${TARGET_HOSTS}
 
-test1: prepare
-	echo 'GET / HTTP/1.1' | nc -vo - -w 5 ${TARGET_HOST} 1080 | grep '^HTTP/1.1'
-
-test2: prepare
-	nc -vo - -w 5 ${TARGET_HOST} 1143 < /dev/null | grep '* OK '
-
-test3: prepare
-	nc -vo - -w 5 ${TARGET_HOST} 1389 < /dev/null
-
-test4: prepare
-	nc -vo - -w 5 ${TARGET_HOST} 1110 < /dev/null | grep '^+OK '
-
-test5: prepare
-	nc -vo - -w 5 ${TARGET_HOST} 1025 < /dev/null | grep '^220 '
+${TARGET_HOSTS}: prepare
+	echo 'GET / HTTP/1.1' | nc -vo - -w 5 $@ 1080 | grep '^HTTP/1.1'
+	nc -vo - -w 5 $@ 1143 < /dev/null | grep '* OK '
+	nc -vo - -w 5 $@ 1389 < /dev/null
+	nc -vo - -w 5 $@ 1110 < /dev/null | grep '^+OK '
+	nc -vo - -w 5 $@ 1025 < /dev/null | grep '^220 '
 
 prepare:
 	sleep 2m
