@@ -47,7 +47,6 @@ jobs:
           # Set output parameters.
           echo ::set-output name=tags::${TAGS}
           echo ::set-output name=test_tag::${TEST_TAG}
-          echo ::set-output name=docker_image::${DOCKER_IMAGE}
           echo ::set-output name=build_args::${BUILD_ARGS}
 
       - name: Set up QEMU
