@@ -70,7 +70,7 @@ jobs:
          echo "::set-output name=matrix::${MATRIX}"
 
 
-  docker:
+  build-image:
     needs: build-matrix
     runs-on: ubuntu-latest
     strategy:
