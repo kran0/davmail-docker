@@ -69,6 +69,7 @@ jobs:
 
 
   docker:
+    needs: build-matrix
     runs-on: ubuntu-latest
     strategy:
       max-parallel: 1
