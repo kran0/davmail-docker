@@ -19,6 +19,7 @@ jobs:
       - name: Set matrix
         id: set-matrix
         run: |
+         set -x
          # Enable bash expand aliases for non-interactive shells
          shopt -s expand_aliases
          
@@ -68,7 +69,6 @@ jobs:
          # Todo: for some strange reason, if the element (.include) is the same, the command above replaces its content. Suitable for us!
 
          echo "::set-output name=matrix::${MATRIX}"
-
 
   build-image:
     needs: build-matrix
