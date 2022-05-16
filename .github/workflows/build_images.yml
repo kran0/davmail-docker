@@ -35,7 +35,7 @@ jobs:
          
          function addElementToMatrix {
           [ -z "${MATRIX}" ] && MATRIX='{}'
-          jq --compact-output --arg revision "${1:-trunk}" --arg tag "${2:-HEAD}" ' . += {
+          jq --compact-output --arg revision "${1:-HEAD}" --arg tag "${2:-trunk}" ' . += {
           "include":[
            { "tag": $tag, "revision": $revision }
           ]
