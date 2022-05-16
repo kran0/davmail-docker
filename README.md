@@ -10,12 +10,12 @@ The information, code and support: http://davmail.sourceforge.net/ .
 ## Simple docker-compose
 
 - Please read the davmail.properties [example and references](http://davmail.sourceforge.net/serversetup.html);
-- Edit [docker-compose.yaml](docker-compose.yaml) to et environment variables;
+- Edit [docker-compose.yaml](docker-compose.yaml) to set environment variables;
 - Run service:
 
 ```bash
   docker-compose up -d
-  dockr-compose down
+  docker-compose down
 ```
 
 ## Simple docker run
