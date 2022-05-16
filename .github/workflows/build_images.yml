@@ -87,7 +87,7 @@ jobs:
           set -x
           DOCKER_IMAGE=${{ secrets.DOCKERHUB_USER }}/${GITHUB_REPOSITORY#*/}
           VERSION="${{ matrix.tag }}"
-          BUILD_ARGS="DAVMAIL_REV="${{ matrix.revision }}"
+          BUILD_ARGS="DAVMAIL_REV=${{ matrix.revision }}"
           TAGS="${DOCKER_IMAGE}:${VERSION}"
           TEST_TAG="${TAGS}"
 
