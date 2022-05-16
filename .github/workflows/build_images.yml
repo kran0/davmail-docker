@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       max-parallel: 1
-      matrix: ${{ steps.set-matrix.outputs.matrix }}
+      matrix: {{ steps.set-matrix.outputs.matrix }}
 
     steps:
       - name: Checkout
