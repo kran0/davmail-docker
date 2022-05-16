@@ -51,7 +51,7 @@ $ docker run -it --rm\
 | Repository:Tag | Description |
 |:--|---|
 | kran0/davmail-docker:latest     | latest stable release with the latest Dockerfile |
-| kran0/davmail-docker:x.y.z      | tagged stable release [![Semver][badge_docker_semver]][link_docker_tags] |
+| kran0/davmail-docker:x.y.z      | stable releases [![Semver][badge_docker_semver]][link_docker_tags] |
 | kran0/davmail-docker:trunk      | Nightly build HEAD rev in SVN repo. *May be unstable!* |
 
 ---
