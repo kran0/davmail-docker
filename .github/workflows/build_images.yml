@@ -16,6 +16,8 @@ jobs:
     steps:
       - name: Set matrix
         id: set-matrix
+        outputs:
+          matrix: ${{ steps.set-matrix.outputs.matrix }}
         run: |
          # Enable bash expand aliases for non-interactive shells
          shopt -s expand_aliases
