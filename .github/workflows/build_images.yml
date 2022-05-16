@@ -40,7 +40,7 @@ jobs:
           "include":[
            { "tag": $tag, "revision": $revision }
           ]
-         }' <<< "${MATRIX:-'{}'}"
+         }' <<< "${MATRIX}"
          }
          
          # Begin MATRIX construction
