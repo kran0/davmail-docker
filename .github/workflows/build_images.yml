@@ -84,6 +84,7 @@ jobs:
       - name: Prepare
         id: prep
         run: |
+          set -x
           DOCKER_IMAGE=${{ secrets.DOCKERHUB_USER }}/${GITHUB_REPOSITORY#*/}
           VERSION="${{ matrix.tag }}"
           BUILD_ARGS="DAVMAIL_REV="${{ matrix.revision }}"
