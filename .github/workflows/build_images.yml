@@ -11,16 +11,9 @@ on:
     - cron: '15 5 * * sun,tue,thu,sat'
 
 jobs:
-  docker:
+  build-matrix:
     runs-on: ubuntu-latest
-    strategy:
-      max-parallel: 1
-      matrix: ${{ fromJson(steps.set-matrix.outputs.matrix) }}
-
     steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-
       - name: Set matrix
         id: set-matrix
         run: |
@@ -73,6 +66,17 @@ jobs:
          # Todo: for some strange reason, if the element (.include) is the same, the command above replaces its content. Suitable for us!
 
          echo "::set-output name=matrix::${MATRIX}"
+
+
+  docker:
+    runs-on: ubuntu-latest
+    strategy:
+      max-parallel: 1
+      matrix: ${{ fromJson(needs.build-matrix.outputs.matrix) }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
 
       - name: Prepare
         id: prep
