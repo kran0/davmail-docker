@@ -55,7 +55,7 @@ cat << ENTRYPOINT
 # Is compatible with our prebuilt image:
 #   Force using openjdk-jre
 #   Force DavMail server and notray mode operation
-#   Use ash for compatibility with BysyBox
+#   Use ash for compatibility with BusyBox
 #
 # Based on the guides from the main DavMail project:
 #  Main:
