@@ -1,0 +1,49 @@
+#!/usr/bin/env -S podman play kube
+
+# Use 'kubectl create -f' to import this pod to k8s
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: davmail-pod
+spec:
+  containers:
+  - env:
+# The env setting documentation: http://davmail.sourceforge.net/serversetup.html
+# Env vars are the same, but must be provided in BASH_FORMAT.
+# E.g. in UPPERCASE and with "_" instead of the dots as WORD_DELIMITER.
+# Some simple examples provided here, please see more in tests/compose-sut.yaml
+    - name: DAVMAIL_DISABLEUPDATECHECK
+      value: "true"
+    - name: DAVMAIL_CALDAVPORT
+      value: "1080"
+    - name: DAVMAIL_IMAPPORT
+      value: "1143"
+    - name: DAVMAIL_LDAPPORT
+      value: "1389"
+    - name: DAVMAIL_POPPORT
+      value: "1110"
+    - name: DAVMAIL_SMTPPORT
+      value: "1025"
+    - name: DAVMAIL_ALLOWREMOTE
+      value: "true"
+    - name: DAVMAIL_LOGFILEPATH
+      value: /dev/stdout
+    - name: DAVMAIL_SERVER
+      value: "true"
+# Yes, you can set JAVA_OPTS here too
+    - name: JAVA_OPTS
+      value: -Xmx512M -Dsun.net.inetaddr.ttl=30
+    image: docker.io/kran0/davmail-docker:latest
+    name: davmail-container
+    ports:
+    - containerPort: 1025
+      hostPort: 1025
+    - containerPort: 1080
+      hostPort: 1080
+    - containerPort: 1110
+      hostPort: 1110
+    - containerPort: 1143
+      hostPort: 1143
+    - containerPort: 1389
+      hostPort: 1389

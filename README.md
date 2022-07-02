@@ -21,7 +21,7 @@ The information, code and support: http://davmail.sourceforge.net/ .
 ## Simple docker run
 
 ```bash
-$ docker run -it --rm\
+ docker run -it --rm\
    -e DAVMAIL_SERVER=true
    -p 1025:1025\
    -p 1110:1110\
@@ -37,11 +37,17 @@ and the official DavMail configuration [example and references](http://davmail.s
 /Just add config path as command after the image TAG/
 
 ```bash
-$ docker run -it --rm\
+ docker run -it --rm\
    -v $PWD/conf/davmail.properties.example:/davmail/davmail.properties\
    -p 1025:1025\
    -p 1110:1110\
    kran0/davmail-docker:latest /davmail/davmail.properties
+```
+
+## Import to Kubernetes
+
+```bash
+ kubectl create -f k8s-pod.yaml
 ```
 
 # Docker tags
@@ -52,7 +58,7 @@ $ docker run -it --rm\
 |:--|---|
 | kran0/davmail-docker:latest     | latest stable release with the latest Dockerfile |
 | kran0/davmail-docker:x.y.z      | stable releases [![Semver][badge_docker_semver]][link_docker_tags] |
-| kran0/davmail-docker:trunk      | Nightly build HEAD rev in SVN repo. *May be unstable!* |
+| kran0/davmail-docker:trunk      | HEAD rev in SVN repo. *May be unstable!* |
 
 ---
 [badge_build_status]:https://github.com/kran0/davmail-docker/actions/workflows/build_images.yml/badge.svg
