@@ -1,8 +1,5 @@
 #!/usr/bin/env -S docker-compose -f
 
----
-version: "3"
-
 services:
   davmail:
     image: kran0/davmail-docker:latest
