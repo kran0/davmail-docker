@@ -1,5 +1,5 @@
 ARG BASE_IMAGE=openjdk:8-jre-alpine
-FROM alpine:3.15 AS builder
+FROM alpine:3 AS builder
 
 #trunk rev HEAD (may be unstable)
 #5.4.0 rev 3135
@@ -50,4 +50,3 @@ COPY --from=builder /target /
 
 EXPOSE 1110 1025 1143 1080 1389
 ENTRYPOINT [ "/entrypoint" ]
-#CMD [ "/davmail/davmail.properties" ]
