@@ -6,7 +6,7 @@
 # Unfortunately davmail.Settings is not supporting environment-based
 # configuration: https://sourceforge.net/p/davmail/code/HEAD/tree/trunk/src/java/davmail/Settings.java
 #
-# This script implements envirenment support entrypoint generation
+# This script implements environment support entrypoint generation
 # based on the original davmail.properties file: https://sourceforge.net/p/davmail/code/HEAD/tree/trunk/src/etc/davmail.properties
 
 DAVMAIL_PROPERTIES_FILE="${1:-./davmail.properties.example}"
