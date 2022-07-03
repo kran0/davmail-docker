@@ -3,13 +3,14 @@ services:
     depends_on:
       - davmail-textconfig
       - davmail-envconfig
+      - davmail
     build:
       context: .
       dockerfile: Dockerfile-sut
       args:
         ADD_PACKAGES: make
     environment:
-      TARGET_HOSTS: davmail-textconfig davmail-envconfig
+      TARGET_HOSTS: davmail-textconfig davmail-envconfig davmail
     command: tests
 
 

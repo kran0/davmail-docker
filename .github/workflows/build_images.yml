@@ -132,7 +132,9 @@ jobs:
 
       - name: Test default arch
         env:
-          COMPOSE_FILE: ./tests/compose-sut.yaml
+          # ./tests/*.yaml tests the image in test environment
+          # ./docker-compose.yaml tests the ./docker-compose.yaml example, not the image
+          COMPOSE_FILE: ./tests/compose-sut.yaml:./docker-compose.yaml
           IMAGE_NAME: ${{ steps.prep.outputs.test_tag }}
         run: |
          set -e
