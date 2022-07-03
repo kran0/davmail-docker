@@ -3,7 +3,7 @@ services:
     depends_on:
       - davmail-textconfig
       - davmail-envconfig
-      - davmail
+      - davmail # used to test main ./docker-compose.yaml
     build:
       context: .
       dockerfile: Dockerfile-sut
