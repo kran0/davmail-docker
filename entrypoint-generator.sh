@@ -73,11 +73,9 @@ cat << ENTRYPOINT
 if [ -z "\${1}" ]
 then
  readonly DAVMAIL_PROPERTIES_FILE="\$(mktemp)"
- (umask 0077
-  cat << FILL_TEMPLATE_WITH_ENV
+ cat << FILL_TEMPLATE_WITH_ENV > "\${DAVMAIL_PROPERTIES_FILE}"
 $(genTemplate "${DAVMAIL_PROPERTIES_FILE}")
 FILL_TEMPLATE_WITH_ENV
- ) > "\${DAVMAIL_PROPERTIES_FILE}"
 else
  readonly DAVMAIL_PROPERTIES_FILE="\${1}"
 fi
