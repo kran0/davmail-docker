@@ -8,7 +8,7 @@ on:
     tags:
       - '*.*.*'
   schedule:
-    - cron: '15 5 * * sun,tue,thu,sat'
+    - cron: '15 2 * * sun,tue,thu,sat'
 
 jobs:
   build-matrix:
