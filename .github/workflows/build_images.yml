@@ -27,12 +27,13 @@ jobs:
          alias wrap='
          {
           for c in $(cat); do
-           alias ${TOOL_NAME:-${c}}="${CONTAINER_RUN:-podman run -i --rm} docker.io/kran0/tiny:${c}";
+           alias ${TOOL_NAME:-${c}}="${CONTAINER_RUN:-podman run -i --rm} ${CONTAINER_RUN_ARGS} docker.io/kran0/tiny:${c}";
           done;
           unset c;
          }<<<'
          
-         wrap 'svn xmlstarlet curl jq'
+         wrap 'xmlstarlet curl jq'
+         CONTAINER_RUN_ARGS='--dns-opt="options single-request"' wrap 'svn'
          
          function addElementToMatrix {
           [ -z "${MATRIX}" ] && MATRIX='{}'
