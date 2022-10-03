@@ -32,7 +32,7 @@ jobs:
           unset c;
          }<<<'
          
-         wrap 'xmlstarlet curl jq'
+         wrap 'xmlstarlet jq'
          CONTAINER_RUN_ARGS='--dns-opt="options single-request"' wrap 'svn'
          
          function addElementToMatrix {
@@ -58,12 +58,9 @@ jobs:
          LATEST_VERSION="${LATEST##* }"
          unset LATEST
          
-         # Get docker TAGS
          # Check previous built image with TAG=LATEST_VERSION
          # Set BUILD_RELEASE on fail
-         curl --silent https://registry.hub.docker.com/v1/repositories/kran0/davmail-docker/tags\
-          | jq -r '.[].name'\
-          | grep -wq "${LATEST_VERSION}" || BUILD_RELEASE=true
+         podman manifest inspect "docker.io/kran0/davmail-docker:${LATEST_VERSION}" || BUILD_RELEASE=true
          
          # Add release to the MATRIX
          [ "${BUILD_RELEASE:-false}" '==' 'true' ] && MATRIX=$(addElementToMatrix ${LATEST_REVISION} ${LATEST_VERSION})
