@@ -10,7 +10,15 @@ services:
       args:
         ADD_PACKAGES: make
     environment:
-      TARGET_HOSTS: davmail-textconfig davmail-envconfig davmail
+      - TARGET_HOSTS=davmail-textconfig davmail-envconfig davmail
+#      - TEST_TOOL="openssl s_client -connect"
+#      - HOST_PORT_DELIMETER=":"
+# Listener ports
+      - DAVMAIL_CALDAVPORT=1080
+      - DAVMAIL_IMAPPORT=1143
+      - DAVMAIL_LDAPPORT=1389
+      - DAVMAIL_POPPORT=1110
+      - DAVMAIL_SMTPPORT=1025
     command: tests
 
 
