@@ -10,9 +10,7 @@ services:
 ## build-args (Not recommended! Please use defaults)
 #      args:
 #        DAVMAIL_REV: "HEAD"
-#        BASE_IMAGE: "kran0/tiny:openjdk8-jre""
-
-    image: kran0/davmail-docker:latest
+#        BASE_IMAGE: "kran0/tiny:openjdk8-jre"
 
 # The env setting documentation: http://davmail.sourceforge.net/serversetup.html
 # Env vars are the same, but must be provided in BASH_FORMAT.
