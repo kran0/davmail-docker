@@ -139,9 +139,11 @@ jobs:
          docker-compose up --force-recreate --build --exit-code-from sut sut
          docker-compose down
 
-         podman-compose up --force-recreate --build --exit-code-from sut sut
-         podman-compose down
-
          podman play kube k8s-pod.yaml
          podman pod stop davmail-pod
          podman pod rm davmail-pod
+
+         sudo apt update && sudo apt -y install python3-pip
+         pip install podman-compose # you may use: pip3 install podman-compose
+         podman-compose up --force-recreate --build --exit-code-from sut sut
+         podman-compose down
