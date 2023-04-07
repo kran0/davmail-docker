@@ -138,3 +138,5 @@ jobs:
          set -e
          docker-compose up --force-recreate --build --exit-code-from sut sut
          docker-compose down
+         podman-compose up --force-recreate --build --exit-code-from sut sut
+         podman-compose down
