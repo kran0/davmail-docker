@@ -2,7 +2,7 @@
 
 services:
   davmail:
-    image: kran0/davmail-docker:latest
+    image: ${IMAGE_NAME:-kran0/davmail-docker:latest}
 
 #    build:
 #      context: .
