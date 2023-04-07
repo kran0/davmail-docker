@@ -8,7 +8,7 @@ services:
       context: .
       dockerfile: Dockerfile-sut
       args:
-        ADD_PACKAGES: make
+        ALPINE_VERSION: latest
     environment:
       - TARGET_HOSTS=davmail-textconfig davmail-envconfig davmail
 # Listener ports
