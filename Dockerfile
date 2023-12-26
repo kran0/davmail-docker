@@ -1,5 +1,5 @@
 ARG BASE_IMAGE=openjdk:8-jre-alpine
-FROM alpine:3 AS builder
+FROM alpine:latest AS builder
 
 #trunk rev HEAD (may be unstable)
 #5.4.0 rev 3135
