@@ -7,6 +7,7 @@ FROM alpine:3 AS builder
 #5.5.1 rev 3299
 #6.0.1 rev 3390
 #6.1.0 rev 3423
+#6.2.0 rev 3464
 ARG DAVMAIL_REV=3423
 
 #exclude these deps in target
