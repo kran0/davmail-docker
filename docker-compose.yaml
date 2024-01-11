@@ -1,7 +1,8 @@
 services:
   davmail:
     image: ${IMAGE_NAME:-kran0/davmail-docker:latest}
-
+    volumes:
+       - davmail-config:/davmail-config
 #    build:
 #      context: .
 #      dockerfile: Dockerfile
@@ -28,13 +29,6 @@ services:
       - JAVA_OPTS=-Xmx512M -Dsun.net.inetaddr.ttl=30
 # Some variables are stored in davmail-config volume, run with following variable to forget them
 #      - DISABLE_DAVMAIL_PROPERTIES_PERSISTENCE=true
-
-# You can use old-fasion text-based config, provided by external volume
-# If the command is set, then environment is mostly ignored
-#    command: [ "/davmail/davmail.properties" ]
-    volumes:
-#      - ./conf/davmail.properties.example:/davmail/davmail.properties
-       - davmail-config:/davmail-config
     ports:
       - 1080:1080
       - 1143:1143
