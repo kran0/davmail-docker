@@ -70,12 +70,31 @@ cat << ENTRYPOINT
 # Usage: $0 [DAVMAIL_PROPERTIES_FILE]
 # Usage: $0 [witout args]
 
+$(declare -f getPropertyValues)
+
 if [ -z "\${1}" ]
 then
- readonly DAVMAIL_PROPERTIES_FILE="\$(mktemp)"
+ readonly DAVMAIL_PROPERTIES_FILE="/davmail-config/davmail.properties"
+
+ # Create properties file backup
+ [ -f "\${DAVMAIL_PROPERTIES_FILE}" ]\
+  && cp -f "\${DAVMAIL_PROPERTIES_FILE}" "\${DAVMAIL_PROPERTIES_FILE}.backup"
+
+ # Fill properties file with environment variables
  cat << FILL_TEMPLATE_WITH_ENV > "\${DAVMAIL_PROPERTIES_FILE}"
 $(genTemplate "${DAVMAIL_PROPERTIES_FILE}")
 FILL_TEMPLATE_WITH_ENV
+
+ # Add special persistent stored values from properties file backup
+ if [ -f "\${DAVMAIL_PROPERTIES_FILE}.backup" ] && [ ! "\${DISABLE_DAVMAIL_PROPERTIES_PERSISTENCE}" '==' 'true' ]
+ then
+  getPropertyValues "\${DAVMAIL_PROPERTIES_FILE}.backup" /dev/null\
+  | while read line
+    do
+     grep -qe "^\$(echo \${line} | cut -f1 -d=)=" "\${DAVMAIL_PROPERTIES_FILE}"\
+      || echo "\${line}" >> "\${DAVMAIL_PROPERTIES_FILE}"
+    done
+ fi
 else
  readonly DAVMAIL_PROPERTIES_FILE="\${1}"
 fi

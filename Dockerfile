@@ -52,3 +52,4 @@ COPY --from=builder /target /
 
 EXPOSE 1110 1025 1143 1080 1389
 ENTRYPOINT [ "/entrypoint" ]
+VOLUME [ "/davmail-config" ]

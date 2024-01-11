@@ -1,5 +1,3 @@
-#!/usr/bin/env -S docker-compose -f
-
 services:
   davmail:
     image: ${IMAGE_NAME:-kran0/davmail-docker:latest}
@@ -28,12 +26,15 @@ services:
       - DAVMAIL_LOGFILEPATH=/dev/stdout
 # Yes, you can set JAVA_OPTS here too
       - JAVA_OPTS=-Xmx512M -Dsun.net.inetaddr.ttl=30
+# Some variables are stored in davmail-config volume, run with following variable to forget them
+#      - DISABLE_DAVMAIL_PROPERTIES_PERSISTENCE=true
 
 # You can use old-fasion text-based config, provided by external volume
 # If the command is set, then environment is mostly ignored
-#    volumes:
-#      - ./conf/davmail.properties.example:/davmail/davmail.properties
 #    command: [ "/davmail/davmail.properties" ]
+    volumes:
+#      - ./conf/davmail.properties.example:/davmail/davmail.properties
+       - davmail-config:/davmail-config
     ports:
       - 1080:1080
       - 1143:1143
@@ -41,3 +42,6 @@ services:
       - 1110:1110
       - 1025:1025
     restart: on-failure
+
+volumes:
+  davmail-config:
