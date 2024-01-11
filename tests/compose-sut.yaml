@@ -22,7 +22,6 @@ services:
 
 # Case1: old-fasion text config
   davmail-textconfig:
-    user: 100000:100000 # for test usage only, do not copy this line
     cap_drop:           # for test usage only, do not copy this line
       - ALL             # for test usage only, do not copy this line
     image: ${IMAGE_NAME}
@@ -33,7 +32,6 @@ services:
 
 # Case2: environment-based configuration
   davmail-envconfig:
-    user: 100000:100000 # for test usage only, do not copy this line
     cap_drop:           # for test usage only, do not copy this line
       - ALL             # for test usage only, do not copy this line
     image: ${IMAGE_NAME}
