@@ -2,32 +2,26 @@ services:
   davmail:
     image: ${IMAGE_NAME:-kran0/davmail-docker:latest}
     volumes:
-       - davmail-config:/davmail-config
+       - davmail-config:/davmail-config # To save persistent conf data
 #    build:
 #      context: .
 #      dockerfile: Dockerfile
-## build-args (Not recommended! Please use defaults)
-#      args:
-#        DAVMAIL_REV: "HEAD"
-#        BASE_IMAGE: "kran0/tiny:openjdk8-jre"
 
 # The env setting documentation: http://davmail.sourceforge.net/serversetup.html
-# Env vars are the same, but must be provided in BASH_FORMAT.
-# E.g. in UPPERCASE and with "_" instead of the dots as WORD_DELIMITER.
-# Some simple examples provided here, please see more in tests/compose-sut.yaml
+# Vars captions are the same, but the names must be provided in BASH_FORMAT
+# E.g. in UPPERCASE and with "_" instead of the dots as WORD_DELIMITER
+# Please watch more examples in tests/compose-sut.yaml
     environment:
       - DAVMAIL_SERVER=true
+      - DAVMAIL_ALLOWREMOTE=true
+      - DAVMAIL_DISABLEUPDATECHECK=true
+      - DAVMAIL_LOGFILEPATH=/dev/stdout
       - DAVMAIL_CALDAVPORT=1080
       - DAVMAIL_IMAPPORT=1143
       - DAVMAIL_LDAPPORT=1389
       - DAVMAIL_POPPORT=1110
       - DAVMAIL_SMTPPORT=1025
-      - DAVMAIL_ALLOWREMOTE=true
-      - DAVMAIL_DISABLEUPDATECHECK=true
-      - DAVMAIL_LOGFILEPATH=/dev/stdout
-# Yes, you can set JAVA_OPTS here too
       - JAVA_OPTS=-Xmx512M -Dsun.net.inetaddr.ttl=30
-# Some variables are stored in davmail-config volume, run with following variable to forget them
 #      - DISABLE_DAVMAIL_PROPERTIES_PERSISTENCE=true
     ports:
       - 1080:1080

@@ -18,8 +18,9 @@ The information, code and support: http://davmail.sourceforge.net/ .
   docker-compose down
 ```
 
-_enthropoint script will try to store the created persistent variables on the davmail-config volume file system._
-_If this volume is deleted, some of the percistent configuration data may be lost._
+_Entrypoint script will try to store the created persistent variables on the davmail-config volume file system._
+_If this volume is deleted, some of the persistent configuration data may be lost._
+_You can force disable davmail-config persistance usage by setting `DISABLE_DAVMAIL_PROPERTIES_PERSISTENCE=true`_
 
 ## Simple docker run
 
