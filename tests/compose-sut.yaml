@@ -74,6 +74,11 @@ services:
       - DAVMAIL_SSL_KEYSTOREPASS=
       - DAVMAIL_SSL_KEYPASS=
 
+      - DAVMAIL_OAUTH_TOKENFILEPATH=
+      - DAVMAIL_OAUTH_PERSISTTOKEN=
+      - DAVMAIL_OAUTH_CLIENTID=d3590ed6-52b3-4102-aeff-aad2292ab01c
+      - DAVMAIL_OAUTH_REDIRECTURI=urn:ietf:wg:oauth:2.0:oob
+
 # Accept specified certificate even if invalid according to trust store
       - DAVMAIL_SERVER_CERTIFICATE_HASH=
 

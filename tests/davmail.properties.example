@@ -21,6 +21,14 @@ davmail.ldapPort=1389
 davmail.popPort=1110
 davmail.smtpPort=1025
 
+# Optional: separate file to store Oauth tokens
+davmail.oauth.tokenFilePath=
+# update stored refresh token after each authentication
+davmail.oauth.persistToken=
+# Required if admin won't provide approval
+davmail.oauth.clientId=
+davmail.oauth.redirectUri=
+
 #############################################################
 # Network settings
 

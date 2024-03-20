@@ -39,6 +39,13 @@ RUN mv -v /davmail-code/target/davmail-*.jar /target/davmail/
 RUN cd /target/davmail\
  && ln -s davmail-*.jar davmail.jar
 
+RUN sed -i '/#davmail.oauth.tokenFilePath=/s/^#//g' /davmail-code/src/etc/davmail.properties
+RUN sed -i '/davmail.oauth.tokenFilePath/a \
+# update stored refresh token after each authentication \n\
+davmail.oauth.persistToken= \n\
+davmail.oauth.clientId= \n\
+davmail.oauth.redirectUri= \' /davmail-code/src/etc/davmail.properties
+
 # Make entrypoint
 COPY entrypoint-generator.sh /davmail-entrypoint/generator
 RUN /davmail-entrypoint/generator /davmail-code/src/etc/davmail.properties > /target/entrypoint\
