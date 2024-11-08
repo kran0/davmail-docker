@@ -136,8 +136,8 @@ jobs:
           IMAGE_NAME: ${{ steps.prep.outputs.test_tag }}
         run: |
          set -e
-         docker-compose up --force-recreate --build --exit-code-from sut sut
-         docker-compose down
+         docker compose up --force-recreate --build --exit-code-from sut sut
+         docker compose down
 
          podman play kube k8s-pod.yaml
          podman pod stop davmail-pod
