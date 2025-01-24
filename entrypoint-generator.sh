@@ -83,6 +83,7 @@ then
  # Fill properties file with environment variables
  cat << FILL_TEMPLATE_WITH_ENV > "\${DAVMAIL_PROPERTIES_FILE}"
 $(genTemplate "${DAVMAIL_PROPERTIES_FILE}")
+\${ADDITIONAL_PROPERTY_VALUES:-# No ADDITIONAL_PROPERTY_VALUES variable was set}
 FILL_TEMPLATE_WITH_ENV
 
  # Add special persistent stored values from properties file backup

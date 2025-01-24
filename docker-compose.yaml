@@ -23,6 +23,19 @@ services:
       - DAVMAIL_SMTPPORT=1025
       - JAVA_OPTS=-Xmx512M -Dsun.net.inetaddr.ttl=30
 #      - DISABLE_DAVMAIL_PROPERTIES_PERSISTENCE=true
+
+# ADDITIONAL_PROPERTY_VALUES example usage # TODO: move this example to tests/compose-sut.yaml
+# the example is based on
+# 	https://github.com/mguessan/davmail/issues/321#issuecomment-1867072418
+# 	and https://github.com/kran0/davmail-docker/pull/7
+# Add any properties based on DavMail docs: https://davmail.sourceforge.net/serversetup.html
+
+#      - ADDITIONAL_PROPERTY_VALUES=
+#          
+#          davmail.oauth.clientId=d3590ed6-52b3-4102-aeff-aad2292ab01c
+#
+#          davmail.oauth.redirectUri=urn:ietf:wg:oauth:2.0:oob
+
     ports:
       - 1080:1080
       - 1143:1143
