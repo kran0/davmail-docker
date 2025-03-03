@@ -1,4 +1,4 @@
-ARG BASE_IMAGE=openjdk:8-jre-alpine
+ARG BASE_IMAGE=eclipse-temurin:21-jre-alpine
 FROM alpine:latest AS builder
 
 #trunk rev HEAD (may be unstable)
