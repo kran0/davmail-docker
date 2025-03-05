@@ -1,15 +1,16 @@
-ARG BASE_IMAGE=openjdk:8-jre-alpine
-FROM alpine:latest AS builder
+ARG BASE_IMAGE=docker.io/library/eclipse-temurin:21-jre-alpine
+ARG BUILD_IMAGE=docker.io/library/eclipse-temurin:21-jdk-alpine
+
+FROM ${BUILD_IMAGE} AS builder
 
 #trunk rev HEAD (may be unstable)
-#5.4.0 rev 3135
-#5.5.0 rev 3293
-#5.5.1 rev 3299
 #6.0.1 rev 3390
 #6.1.0 rev 3423
 #6.2.0 rev 3464
 #6.2.1 rev 3423
-ARG DAVMAIL_REV=3423
+#6.2.2 rev 3546
+#6.3.0 rev 3627
+ARG DAVMAIL_REV=3627
 
 #exclude these deps in target
 # Default headless: no junit tests, graphics support and winrun
@@ -17,7 +18,7 @@ ARG DEPS_EXCLUDE_ARTIFACTIDS='winrun4j,servlet-api,junit,swt,growl'
 ARG DEPS_EXCLUDE_GROUPIDS='org.boris.winrun4j,javax.servlet,junit,org.eclipse,info.growl'
 
 # Install tools
-RUN apk add --update --no-cache openjdk8 maven subversion bash
+RUN apk add --update --no-cache maven subversion bash
 
 # Get svn TRUNK or released REVISION based on build-arg: DAVMAIL_REV
 RUN svn co -r ${DAVMAIL_REV} https://svn.code.sf.net/p/davmail/code/trunk /davmail-code
@@ -35,7 +36,7 @@ RUN cd /davmail-code\
 RUN mkdir -vp /target/davmail /target/davmail/lib
 
 # Move dependencies and davmail to target, link davmail to pretty short name
-RUN mv -v $( sed -ne 's/^.*:\([^:]*\.jar\)$/\1/p' /tmp/deps ) /target/davmail/lib/
+RUN mv -v $( sed -ne 's/^.*:\([^:]*\.jar\).*--.*$/\1/p' /tmp/deps ) /target/davmail/lib/
 RUN mv -v /davmail-code/target/davmail-*.jar /target/davmail/
 RUN cd /target/davmail\
  && ln -s davmail-*.jar davmail.jar
