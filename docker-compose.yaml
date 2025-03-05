@@ -6,6 +6,9 @@ services:
 #    build:
 #      context: .
 #      dockerfile: Dockerfile
+#      args:
+#        - BASE_IMAGE=docker.io/library/eclipse-temurin:21-jre-alpine
+#        - BUILD_IMAGE=docker.io/library/eclipse-temurin:21-jdk-alpine
 
 # The env setting documentation: http://davmail.sourceforge.net/serversetup.html
 # Vars captions are the same, but the names must be provided in BASH_FORMAT
