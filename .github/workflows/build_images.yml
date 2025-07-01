@@ -49,10 +49,10 @@ jobs:
          # Add trunk to the matrix
          [ "${BUILD_TRUNK:-true}" '==' 'true' ] && MATRIX=$(addElementToMatrix)
          
-         # Search the release pattern in the latest 100 svn repo commits
+         # Search the release pattern in the latest 500 svn repo commits
          # Print revision and version number
          # Set LATEST_REVISION and LATEST_VERSION env vars
-         LATEST=$(svn log https://svn.code.sf.net/p/davmail/code/trunk --limit 100 --search 'Prepare [0-9]*.[0-9]*.[0-9]* release' --xml\
+         LATEST=$(svn log https://svn.code.sf.net/p/davmail/code/trunk --limit 500 --search 'Prepare [0-9]*.[0-9]*.[0-9]* release' --xml\
            | xmlstarlet sel -T -t -m '/log/logentry[1]' -v 'concat(@revision, " " , substring-before(substring-after(msg, "Prepare "), " release"))' -n)
          LATEST_REVISION="${LATEST%% *}"
          LATEST_VERSION="${LATEST##* }"
